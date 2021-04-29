@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MagZoo</string>
+    <string name="title_activity_map">Map</string>
+
+    <string name="registar">Registar</string>
+    <string name="nome_de_utilizador">Nome de Utilizador</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="confirmar_password">Confirmar Password</string>
+    <string name="entrar">Entrar</string>
 </resources>
