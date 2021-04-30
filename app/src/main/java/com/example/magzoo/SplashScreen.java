@@ -42,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
 
-
+    //fazer giff
     private class SplashMove extends AsyncTask
     {
         @Override
