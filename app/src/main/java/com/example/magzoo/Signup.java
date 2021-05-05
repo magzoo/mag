@@ -4,12 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.magzoo.Utilities.Utils;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Signup extends AppCompatActivity {
 
     private Button btnSignup;
+    private EditText txtEmail;
+    private EditText txtUsername;
+    private EditText txtPassword;
+    private EditText txtConfirmPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,18 +32,86 @@ public class Signup extends AppCompatActivity {
         getSupportActionBar().hide();
 
         btnSignup = findViewById(R.id.btnSignup);
+        txtEmail =  findViewById(R.id.txtEmail);
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword =  findViewById(R.id.txtPassword);
+        txtConfirmPassword = findViewById(R.id.txtConfirmPassword);
+
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent =  new Intent(Signup.this, Map.class);
-                startActivity(intent);
-                finish();
+                createUser();
             }
         });
 
     }
+
+    public void createUser()
+    {
+        Connection connection = Utils.getConnection();
+        if(!txtEmail.getText().toString().contains("@") || !txtEmail.getText().toString().contains("."))
+        {
+            Utils.toast(this, "Email Inválido");
+        }
+        else if (!txtPassword.getText().toString().equals(txtPassword.getText().toString()))
+        {
+            Utils.toast(this, "Passwords não Correspondem");
+        }
+        else
+        {
+            sqlInsertUser();
+        }
+
+    }
+
+
+    public void sqlInsertUser()
+    {
+        String msg = "";
+        try
+        {
+
+            Connection connection = Utils.getConnection();
+
+            if (connection == null)
+            {
+                msg = "Verifique a sua ligação à Internet!";
+            }
+            else
+            {
+                // Change below query according to your own database.
+                String query = "[dbo].[insertUser] '" + txtUsername.getText() + "', '" + txtEmail.getText().toString() + "','" + txtPassword.getText().toString() + "'";
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                if (rs.next()) {
+                    if(rs.getString("erro").equals("ok"))
+                    {
+                        Intent intent =  new Intent(Signup.this, Map.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        msg = rs.getString("erro");
+                    }
+                }
+                else
+                {
+                    msg = "Credenciais Inválidas";
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //isSuccess = false;
+            msg = ex.getMessage();
+        }
+        Utils.toast(this, msg);
+    }
+
+
 
     @Override
     public void onBackPressed() {

@@ -10,4 +10,5 @@
     android:orientation="horizontal"
     tools:context=".SplashScreen">
 
+
 </LinearLayout>

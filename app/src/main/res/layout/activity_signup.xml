@@ -19,14 +19,14 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/txtEmail"
         android:layout_width="225dp"
         android:layout_height="46dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/black"
         android:ems="10"
         android:hint="@string/email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.028" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/txtUsername"
         android:layout_width="225dp"
         android:layout_height="46dp"
         android:layout_marginTop="15dp"
@@ -48,37 +48,37 @@
         android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/txtPassword"
         android:layout_width="225dp"
         android:layout_height="46dp"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/black"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/txtConfirmPassword"
         android:layout_width="225dp"
         android:layout_height="46dp"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/black"
         android:ems="10"
         android:hint="@string/confirmar_password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
     <Button
         android:id="@+id/btnSignup"
@@ -91,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/txtConfirmPassword" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
