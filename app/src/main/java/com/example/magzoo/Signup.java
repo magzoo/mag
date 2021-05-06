@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.magzoo.Utilities.Utils;
 
@@ -32,7 +30,7 @@ public class Signup extends AppCompatActivity {
         getSupportActionBar().hide();
 
         btnSignup = findViewById(R.id.btnSignup);
-        txtEmail =  findViewById(R.id.txtEmail);
+        txtEmail =  findViewById(R.id.txtLoginEmail);
         txtUsername = findViewById(R.id.txtUsername);
         txtPassword =  findViewById(R.id.txtPassword);
         txtConfirmPassword = findViewById(R.id.txtConfirmPassword);
@@ -49,7 +47,6 @@ public class Signup extends AppCompatActivity {
 
     public void createUser()
     {
-        Connection connection = Utils.getConnection();
         if(!txtEmail.getText().toString().contains("@") || !txtEmail.getText().toString().contains("."))
         {
             Utils.toast(this, "Email Inválido");
@@ -105,7 +102,6 @@ public class Signup extends AppCompatActivity {
         }
         catch (Exception ex)
         {
-            //isSuccess = false;
             msg = ex.getMessage();
         }
         Utils.toast(this, msg);
