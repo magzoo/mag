@@ -3,6 +3,7 @@ package com.example.magzoo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -65,17 +66,25 @@ public class Login extends AppCompatActivity {
         String msg = "";
         try{
             Connection connection = Utils.getConnection();
-
             if (connection == null) {
                 msg = "Verifique a sua ligação à Internet!";
             }
             else {
+                String email = txtLoginEmail.getText().toString();
+                String pass = txtLoginPassword.getText().toString();
+
                 // Change below query according to your own database.
-                String query = "select [dbo].[fnLogin]( '" + txtLoginEmail.getText() + "', '" + txtLoginPassword.getText().toString() + "') as boolean";
+                String query = "select [dbo].[fnLogin]( '" + email + "', '" + pass + "') as boolean";
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 if (rs.next()) {
                     if(rs.getString("boolean").equals("1")) {
+                        SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedLogin.edit();
+                        editor.putString("email", email);
+                        editor.putString("pass", pass);
+                        editor.commit();
+
                         Intent intent =  new Intent(Login.this, Map.class);
                         startActivity(intent);
                         finish();

@@ -14,14 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MagZoo">
-        <activity android:name=".Awards"/>
+        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".Profile" />
+        <activity android:name=".Awards" />
         <activity android:name=".Collection" />
         <activity
             android:name=".Map"
             android:label="@string/title_activity_map"
             android:theme="@style/Theme.MagZoo.NoActionBar" />
-        <activity android:name=".Signup"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".Signup"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen">
             <intent-filter>

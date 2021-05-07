@@ -10,12 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class Map extends AppCompatActivity {
 
     private ImageButton btnCollection;
     private ImageButton btnAwards;
+    private Button btnProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class Map extends AppCompatActivity {
 
         btnCollection = findViewById(R.id.btnCollection);
         btnAwards = findViewById(R.id.btnAwards);
+        btnProfile = findViewById(R.id.btnProfile);
 
 
         btnCollection.setOnClickListener(new View.OnClickListener() {
@@ -44,5 +47,12 @@ public class Map extends AppCompatActivity {
             }
         });
 
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(Map.this, Profile.class);
+                startActivity(intent);
+            }
+        });
     }
 }

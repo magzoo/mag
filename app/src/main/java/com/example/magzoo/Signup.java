@@ -3,6 +3,7 @@ package com.example.magzoo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,13 +78,22 @@ public class Signup extends AppCompatActivity {
             }
             else
             {
+                String userName = txtUsername.getText().toString();
+                String email = txtEmail.getText().toString();
+                String pass = txtPassword.getText().toString();
+
                 // Change below query according to your own database.
-                String query = "[dbo].[insertUser] '" + txtUsername.getText() + "', '" + txtEmail.getText().toString() + "','" + txtPassword.getText().toString() + "'";
+                String query = "[dbo].[insertUser] '" + userName + "', '" + email + "','" + pass + "'";
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 if (rs.next()) {
                     if(rs.getString("erro").equals("ok"))
                     {
+                        SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedLogin.edit();
+                        editor.putString("email", email);
+                        editor.putString("pass", pass);
+
                         Intent intent =  new Intent(Signup.this, Map.class);
                         startActivity(intent);
                         finish();

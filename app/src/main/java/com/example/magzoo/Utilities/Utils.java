@@ -7,7 +7,9 @@ import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Utils {
 
@@ -35,11 +37,11 @@ public class Utils {
         }
         catch (ClassNotFoundException e)
         {
-            Log.d("bajoraz", "ClassNotFoundException" + e.getMessage());
+            Log.d("bajoraz", "ClassNotFoundException: " + e.getMessage());
         }
         catch (Exception e)
         {
-            Log.d("bajoraz", "Exception" + e.getMessage());
+            Log.d("bajoraz", "Exception: " + e.getMessage());
         }
         return conn;
     }
@@ -50,5 +52,26 @@ public class Utils {
     }
 
 
+    public static ResultSet getUserInfo(String email) {
+        String msg = "";
+        try {
+            Connection connection = getConnection();
+            if (connection == null) {
+                msg = "Verifique a sua ligação à Internet!";
+            } else {
 
+                // Change below query according to your own database.
+                String query = "exec dbo.spGetUserInfo '" + email + "'";
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                return rs;
+
+            }
+        } catch (Exception ex) {
+            msg = ex.getMessage();
+        }
+
+        return null;
+    }
 }
