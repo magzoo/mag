@@ -69,7 +69,7 @@ public class SplashScreen extends AppCompatActivity {
                 while (time < 5000) {
                     Log.d("splashcenas", "while");
 
-                    time += (interval * 5);
+                    time += (interval * 2);
                     back.setBackgroundResource(R.drawable.splash1);
                     TimeUnit.MILLISECONDS.sleep(interval);
                     back.setBackgroundResource(R.drawable.splash2);

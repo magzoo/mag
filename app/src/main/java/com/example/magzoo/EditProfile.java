@@ -22,13 +22,16 @@ public class EditProfile extends AppCompatActivity {
     private EditText email;
     private EditText pass;
     private EditText pass2;
-    private String email2;
-    private String pass3;
     private EditText userName;
     private TextView creationDate;
     private TextView modDate;
 
+    private String lkEmail;
+    private String lkUserName;
+    private String lkPass;
     private Button btnSave;
+
+    SharedPreferences sharedLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +47,9 @@ public class EditProfile extends AppCompatActivity {
         modDate = findViewById(R.id.txtEditProfileModDate);
         btnSave = findViewById(R.id.btnSave);
 
-
-        SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
-        pass3 = sharedLogin.getString("pass", "");
-        email2 = sharedLogin.getString("email", "");
+        sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+        lkPass = sharedLogin.getString("pass", "");
+        lkEmail = sharedLogin.getString("email", "");
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,16 +61,23 @@ public class EditProfile extends AppCompatActivity {
         setUserInfo();
     }
 
-    public void setUserInfo(){
-        email.setText(email2);
-        pass.setText(pass3);
-        pass2.setText(pass3);
+    private void updateLkVariables(){
+        lkEmail = email.getText().toString().trim();
+        lkUserName = userName.getText().toString().trim();
+        lkPass = pass.getText().toString().trim();
+    }
 
-        ResultSet rs = Utils.getUserInfo(email2);
+    public void setUserInfo(){
+        email.setText(lkEmail);
+        pass.setText(lkPass);
+        pass2.setText(lkPass);
+
+        ResultSet rs = Utils.getUserInfo(lkEmail);
         if(rs !=null){
             try {
                 if (rs.next()) {
                     userName.setText(rs.getString("Name"));
+                    lkUserName = rs.getString("Name");
                     creationDate.setText("Data de Criação: \n\t" + rs.getString("CreationDate"));
                     modDate.setText("Data de Modificação: \n\t" + rs.getString("ModificationDate"));
                 }
@@ -80,37 +89,55 @@ public class EditProfile extends AppCompatActivity {
 
     public void saveUserInfo(){
         String msg = "";
+
         //acabar estas verificações
-        if(pass.toString().trim().equals(pass2.toString().trim())){
-            if(pass.toString().trim().equals(pass3)){
+        Log.d("bajoraz","lkUserName: " + lkUserName);
+        Log.d("bajoraz","UserName in textbox: " + userName.getText().toString());
+
+
+        Log.d("bajoraz","pass: " + pass.getText().toString().trim());
+        Log.d("bajoraz","pass: " + pass2.getText().toString().trim());
+        if(pass.getText().toString().trim().equals(pass2.getText().toString().trim())){
+            Log.d("bajoraz","lkEmail: " + lkEmail);
+            Log.d("bajoraz","Email in textbox: " + email.getText().toString());
+
+            if(!pass.getText().toString().trim().equals(lkPass) || !email.getText().toString().trim().equals(lkEmail) || !userName.getText().toString().trim().equals(lkUserName)){
                 try{
+                    Log.d("bajoraz","foi");
+                    Log.d("bajoraz","foi: " + pass.getText().toString());
                     Connection connection = Utils.getConnection();
                     if (connection == null) {
                         msg = "Verifique a sua ligação à Internet!";
                     }
                     else {
                         // Change below query according to your own database.
-                        String query = "exec dbo.spEditUser '" + email2 + "','" + email.getText() + "','" + userName.getText() + "','" + pass.toString();
+                        String query = "exec dbo.spEditUser '" + lkEmail + "','" + email.getText() + "','" + userName.getText() + "','" + pass.getText().toString() + "'";
                         Statement stmt = connection.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
                         if (rs.next()) {
                             email.setText(rs.getString("Email"));
                             userName.setText(rs.getString("Name"));
-                            Log.d("bajoraz", "newName: " + rs.getString("Name"));
-                            pass.setText(rs.getString("Password"));
-                            pass2.setText(rs.getString("Password"));
-                            modDate.setText(rs.getString("ModificationDate"));
+                            pass.setText(pass.getText().toString());
+                            pass2.setText(pass.getText().toString());
+                            modDate.setText("Data de Modificação: \n\t" + rs.getString("ModificationDate"));
+
+                            updateLkVariables();
+
+                            SharedPreferences.Editor editor = sharedLogin.edit();
+                            editor.putString("email", rs.getString("Email"));
+                            editor.putString("pass", pass.getText().toString());
+                            editor.commit();
+                            msg = "Alterações guardadas com sucesso!";
                         }
                     }
                 }
                 catch (Exception ex) {
                     msg = ex.getMessage();
                 }
-                if(!msg.isEmpty()) {
-                    Utils.toast(this, msg);
-                }
-            }
+            }else{msg = "Não há nada a ser guardado";}
+        }else{msg = "As passwords não são iguais";}
+        if(!msg.isEmpty()) {
+            Utils.toast(this, msg);
         }
-
     }
 }

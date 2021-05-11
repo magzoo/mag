@@ -1,6 +1,7 @@
 package com.example.magzoo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,6 +19,7 @@ public class Map extends AppCompatActivity {
     private ImageButton btnCollection;
     private ImageButton btnAwards;
     private Button btnProfile;
+    private Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class Map extends AppCompatActivity {
         btnCollection = findViewById(R.id.btnCollection);
         btnAwards = findViewById(R.id.btnAwards);
         btnProfile = findViewById(R.id.btnProfile);
+        btnLogout = findViewById(R.id.btnLogout);
 
 
         btnCollection.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +54,21 @@ public class Map extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(Map.this, Profile.class);
+                startActivity(intent);
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //limpar as shared preferences
+                SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedLogin.edit();
+                editor.putString("email", "");
+                editor.putString("pass", "");
+                editor.commit();
+
+                Intent intent =  new Intent(Map.this, Login.class);
                 startActivity(intent);
             }
         });
