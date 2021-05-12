@@ -93,6 +93,7 @@ public class Signup extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedLogin.edit();
                         editor.putString("email", email);
                         editor.putString("pass", pass);
+                        editor.commit();
 
                         Intent intent =  new Intent(Signup.this, Map.class);
                         startActivity(intent);
