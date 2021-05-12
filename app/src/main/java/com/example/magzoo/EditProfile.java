@@ -89,22 +89,10 @@ public class EditProfile extends AppCompatActivity {
 
     public void saveUserInfo(){
         String msg = "";
-
-        //acabar estas verificações
-        Log.d("bajoraz","lkUserName: " + lkUserName);
-        Log.d("bajoraz","UserName in textbox: " + userName.getText().toString());
-
-
-        Log.d("bajoraz","pass: " + pass.getText().toString().trim());
-        Log.d("bajoraz","pass: " + pass2.getText().toString().trim());
         if(pass.getText().toString().trim().equals(pass2.getText().toString().trim())){
-            Log.d("bajoraz","lkEmail: " + lkEmail);
-            Log.d("bajoraz","Email in textbox: " + email.getText().toString());
 
             if(!pass.getText().toString().trim().equals(lkPass) || !email.getText().toString().trim().equals(lkEmail) || !userName.getText().toString().trim().equals(lkUserName)){
                 try{
-                    Log.d("bajoraz","foi");
-                    Log.d("bajoraz","foi: " + pass.getText().toString());
                     Connection connection = Utils.getConnection();
                     if (connection == null) {
                         msg = "Verifique a sua ligação à Internet!";
