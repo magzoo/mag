@@ -68,13 +68,13 @@ public class Profile extends AppCompatActivity {
                     creationDate.setText("Data de Criação: \n\t" + rs.getString("CreationDate"));
                     Log.d("bajoraz","ola2");
                     String image = rs.getString("Profile_Picture");
-                    Log.d("bajoraz","ola3" + image);
-                    byte[] bytes = Base64.decode(image, Base64.DEFAULT);
-                    Log.d("bajoraz","ola4: " + bytes);
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    Log.d("bajoraz","ola5" + bitmap);
-                    profilePicture.setImageBitmap(bitmap);
-                    Log.d("bajoraz","ola6");
+//                    Log.d("bajoraz","ola3" + image);
+//                    byte[] bytes = Base64.decode(image, Base64.DEFAULT);
+//                    Log.d("bajoraz","ola4: " + bytes);
+//                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//                    Log.d("bajoraz","ola5" + bitmap);
+//                    profilePicture.setImageBitmap(bitmap);
+//                    Log.d("bajoraz","ola6");
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
