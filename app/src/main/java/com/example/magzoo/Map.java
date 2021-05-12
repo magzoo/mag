@@ -20,6 +20,7 @@ public class Map extends AppCompatActivity {
     private ImageButton btnAwards;
     private Button btnProfile;
     private Button btnLogout;
+    private Button btnCredits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class Map extends AppCompatActivity {
         btnAwards = findViewById(R.id.btnAwards);
         btnProfile = findViewById(R.id.btnProfile);
         btnLogout = findViewById(R.id.btnLogout);
+        btnCredits = findViewById(R.id.btnCredits);
 
 
         btnCollection.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,14 @@ public class Map extends AppCompatActivity {
                 editor.commit();
 
                 Intent intent =  new Intent(Map.this, Login.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCredits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(Map.this, Credits.class);
                 startActivity(intent);
             }
         });

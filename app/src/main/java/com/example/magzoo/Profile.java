@@ -69,7 +69,6 @@ public class Profile extends AppCompatActivity {
                     Log.d("bajoraz","ola2");
                     String image = rs.getString("Profile_Picture");
                     Log.d("bajoraz","ola3" + image);
-
                     byte[] bytes = Base64.decode(image, Base64.DEFAULT);
                     Log.d("bajoraz","ola4: " + bytes);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
