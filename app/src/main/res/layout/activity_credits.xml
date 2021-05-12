@@ -22,9 +22,10 @@
         android:id="@+id/txtAlves"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="190221141\n\t André Alexandre da Costa Pereira"
+        android:layout_marginTop="32dp"
+        android:text="190221141\n\t Gonçalo Santos Alves"
         app:layout_constraintEnd_toEndOf="@+id/txtAndré"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtAndré"
         app:layout_constraintTop_toBottomOf="@+id/txtAndré" />
 
