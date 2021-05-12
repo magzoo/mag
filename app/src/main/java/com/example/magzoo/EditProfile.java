@@ -1,14 +1,24 @@
 package com.example.magzoo;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.magzoo.Utilities.Utils;
@@ -33,6 +43,11 @@ public class EditProfile extends AppCompatActivity {
 
     SharedPreferences sharedLogin;
 
+
+    ImageView imgprofile;
+    private ImageButton btnAddImg;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +57,8 @@ public class EditProfile extends AppCompatActivity {
         userName = findViewById(R.id.editTextProfileName);
         pass = findViewById(R.id.editTextTextPassword);
         pass2 = findViewById(R.id.editTextTextPassword2);
+        imgprofile = findViewById(R.id.imgprofile);
+        btnAddImg = findViewById(R.id.btnAddImg);
 
         creationDate = findViewById(R.id.txtEditProfileCrtDate);
         modDate = findViewById(R.id.txtEditProfileModDate);
@@ -50,6 +67,22 @@ public class EditProfile extends AppCompatActivity {
         sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
         lkPass = sharedLogin.getString("pass", "");
         lkEmail = sharedLogin.getString("email", "");
+
+
+        btnAddImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ContextCompat.checkSelfPermission(EditProfile.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(EditProfile.this, new String[]{Manifest.permission.CAMERA}, 100);
+                }
+                if (ContextCompat.checkSelfPermission(EditProfile.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, 100);
+                }
+            }
+
+
+        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +93,24 @@ public class EditProfile extends AppCompatActivity {
 
         setUserInfo();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (ContextCompat.checkSelfPermission(EditProfile.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, 100);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100){
+            Bitmap capturedImage = (Bitmap)data.getExtras().get("data");
+            imgprofile.setImageBitmap(capturedImage);
+        }
+    }
+
 
     private void updateLkVariables(){
         lkEmail = email.getText().toString().trim();
