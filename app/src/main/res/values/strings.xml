@@ -8,4 +8,6 @@
     <string name="email">Email</string>
     <string name="confirmar_password">Confirmar Password</string>
     <string name="entrar">Entrar</string>
+    <string name="camera">Camera</string>
+    <string name="armazenamento">Armazenamento</string>
 </resources>

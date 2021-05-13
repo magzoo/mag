@@ -35,31 +35,23 @@
         android:id="@+id/txtViewPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:text="***********"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.247"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtViewEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewEmail" />
 
     <TextView
         android:id="@+id/txtViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="317dp"
-        android:layout_marginEnd="269dp"
-        android:layout_marginBottom="395dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/txtViewName"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewName" />
 
     <TextView
         android:id="@+id/txtCreationDate"
@@ -83,5 +75,13 @@
         android:text="Editar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="240dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,14 @@
 package com.example.magzoo.Utilities;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.StrictMode;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -73,5 +77,20 @@ public class Utils {
         }
 
         return null;
+    }
+
+    public static String imgToBase64(Bitmap bmp)
+    {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        bmp.recycle();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+
+    public static Bitmap base64ToImg(String str)
+    {
+        byte[] byteArray = Base64.decode(str, android.util.Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
     }
 }
