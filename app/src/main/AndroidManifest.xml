@@ -16,40 +16,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MagZoo">
-        <activity android:name=".Credits"
+        <activity android:name=".CollectionDetails"></activity>
+        <activity
+            android:name=".Credits"
             android:label="@string/tituloCreditos"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".EditProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditProfile"
             android:label="@string/tituloEditarPerfil"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Profile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Profile"
             android:label="@string/tituloPerfil"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Awards"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Awards"
             android:label="@string/tituloPremio"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Collection"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Collection"
             android:label="@string/tituloColecao"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Map"
             android:label="@string/tituloMapa"
-            android:theme="@style/Theme.MagZoo.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MagZoo.NoActionBar" />
         <activity
             android:name=".Signup"
             android:label="@string/tituloPremio"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Login"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".SplashScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

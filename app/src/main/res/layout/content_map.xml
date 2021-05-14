@@ -8,7 +8,7 @@
     android:gravity="center">
 
 
-    <LinearLayout
+    <AbsoluteLayout
         android:id="@+id/lnbackground"
         android:layout_width="2550dp"
         android:layout_height="1446dp"
@@ -16,15 +16,519 @@
         android:layout_y="-700dp"
         android:orientation="horizontal"
         android:background="@drawable/mapa">
-    </LinearLayout>
 
-        <!--<LinearLayout
-            android:id="@+id/layout"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_x="0dp"
-            android:layout_y="0dp"
-            android:background="@color/black"
-            />-->
+        <Button
+            android:id="@+id/btnCrocodile"
+            android:layout_width="61dp"
+            android:layout_height="24dp"
+            android:layout_x="1681dp"
+            android:layout_y="938dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnMonkey"
+            android:layout_width="23dp"
+            android:layout_height="16dp"
+            android:layout_x="1767dp"
+            android:layout_y="1100dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnZebra"
+            android:layout_width="56dp"
+            android:layout_height="52dp"
+            android:layout_x="1286dp"
+            android:layout_y="1039dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnCobo"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_x="1331dp"
+            android:layout_y="1008dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnGolfinho1"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_x="1214dp"
+            android:layout_y="1340dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnGolfinho2"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_x="1197dp"
+            android:layout_y="1222dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnAvárioAsiático"
+            android:layout_width="17dp"
+            android:layout_height="30dp"
+            android:layout_x="1070dp"
+            android:layout_y="1111dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnCangurusVermelhos"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_x="994dp"
+            android:layout_y="1122dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnBongos"
+            android:layout_width="39dp"
+            android:layout_height="38dp"
+            android:layout_x="1031dp"
+            android:layout_y="1138dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnValeTigres1"
+            android:layout_width="54dp"
+            android:layout_height="33dp"
+            android:layout_x="1104dp"
+            android:layout_y="1067dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnValeTigres2"
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:layout_x="1174dp"
+            android:layout_y="983dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnKoala"
+            android:layout_width="23dp"
+            android:layout_height="27dp"
+            android:layout_x="995dp"
+            android:layout_y="1047dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnCanguru"
+            android:layout_width="28dp"
+            android:layout_height="27dp"
+            android:layout_x="1037dp"
+            android:layout_y="1047dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnFaisão"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_x="1214dp"
+            android:layout_y="939dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnIbis"
+            android:layout_width="23dp"
+            android:layout_height="19dp"
+            android:layout_x="1278dp"
+            android:layout_y="939dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnAviarioMadail1"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_x="1043dp"
+            android:layout_y="922dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnAviarioMadail2"
+            android:layout_width="14dp"
+            android:layout_height="37dp"
+            android:layout_x="1089dp"
+            android:layout_y="917dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnCalau"
+            android:layout_width="14dp"
+            android:layout_height="37dp"
+            android:layout_x="1156dp"
+            android:layout_y="886dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnArara"
+            android:layout_width="19dp"
+            android:layout_height="36dp"
+            android:layout_x="1124dp"
+            android:layout_y="876dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnOrixe1"
+            android:layout_width="43dp"
+            android:layout_height="wrap_content"
+            android:layout_x="1042dp"
+            android:layout_y="845dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnOrixe2"
+            android:layout_width="45dp"
+            android:layout_height="62dp"
+            android:layout_x="947dp"
+            android:layout_y="865dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnImpala"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_x="993dp"
+            android:layout_y="820dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnPrimatas1"
+            android:layout_width="23dp"
+            android:layout_height="42dp"
+            android:layout_x="1306dp"
+            android:layout_y="867dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnPrimatas2"
+            android:layout_width="25dp"
+            android:layout_height="26dp"
+            android:layout_x="1237dp"
+            android:layout_y="875dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnPrimatas3"
+            android:layout_width="18dp"
+            android:layout_height="27dp"
+            android:layout_x="1294dp"
+            android:layout_y="822dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnPinguins"
+            android:layout_width="20dp"
+            android:layout_height="21dp"
+            android:layout_x="1144dp"
+            android:layout_y="744dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnPequenosPrimatas"
+            android:layout_width="22dp"
+            android:layout_height="37dp"
+            android:layout_x="1278dp"
+            android:layout_y="743dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnAldeiaDosMacacos"
+            android:layout_width="20dp"
+            android:layout_height="33dp"
+            android:layout_x="1198dp"
+            android:layout_y="813dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnGibão"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:layout_x="1201dp"
+            android:layout_y="699dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnRinocerontesBrancos"
+            android:layout_width="69dp"
+            android:layout_height="40dp"
+            android:layout_x="1328dp"
+            android:layout_y="740dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnTigresBrancos"
+            android:layout_width="59dp"
+            android:layout_height="35dp"
+            android:layout_x="1301dp"
+            android:layout_y="666dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnPorco"
+            android:layout_width="45dp"
+            android:layout_height="24dp"
+            android:layout_x="827dp"
+            android:layout_y="1339dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnVaca"
+            android:layout_width="58dp"
+            android:layout_height="40dp"
+            android:layout_x="775dp"
+            android:layout_y="1306dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnBufalo"
+            android:layout_width="66dp"
+            android:layout_height="40dp"
+            android:layout_x="741dp"
+            android:layout_y="1198dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnBisonte"
+            android:layout_width="64dp"
+            android:layout_height="45dp"
+            android:layout_x="794dp"
+            android:layout_y="1145dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnCamelo"
+            android:layout_width="58dp"
+            android:layout_height="55dp"
+            android:layout_x="724dp"
+            android:layout_y="1132dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnSuricata"
+            android:layout_width="24dp"
+            android:layout_height="31dp"
+            android:layout_x="793dp"
+            android:layout_y="998dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnRinoceronteIndiano1"
+            android:layout_width="72dp"
+            android:layout_height="45dp"
+            android:layout_x="888dp"
+            android:layout_y="1015dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnRinoceronteIndiano2"
+            android:layout_width="73dp"
+            android:layout_height="wrap_content"
+            android:layout_x="855dp"
+            android:layout_y="937dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnGirafa"
+            android:layout_width="93dp"
+            android:layout_height="125dp"
+            android:layout_x="764dp"
+            android:layout_y="767dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnMuntjac"
+            android:layout_width="32dp"
+            android:layout_height="27dp"
+            android:layout_x="924dp"
+            android:layout_y="813dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnPandaVermelho"
+            android:layout_width="43dp"
+            android:layout_height="21dp"
+            android:layout_x="958dp"
+            android:layout_y="765dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnLémure1"
+            android:layout_width="25dp"
+            android:layout_height="36dp"
+            android:layout_x="911dp"
+            android:layout_y="736dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnLémure2"
+            android:layout_width="23dp"
+            android:layout_height="33dp"
+            android:layout_x="1424dp"
+            android:layout_y="571dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnUrsoFormigueiro"
+            android:layout_width="46dp"
+            android:layout_height="19dp"
+            android:layout_x="1014dp"
+            android:layout_y="729dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnFlamingos"
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:layout_x="1453dp"
+            android:layout_y="660dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnHopopótamosPigmeus"
+            android:layout_width="56dp"
+            android:layout_height="33dp"
+            android:layout_x="1530dp"
+            android:layout_y="613dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnNiala"
+            android:layout_width="51dp"
+            android:layout_height="35dp"
+            android:layout_x="1302dp"
+            android:layout_y="405dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnÁxis"
+            android:layout_width="46dp"
+            android:layout_height="63dp"
+            android:layout_x="1272dp"
+            android:layout_y="310dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnUrso"
+            android:layout_width="76dp"
+            android:layout_height="52dp"
+            android:layout_x="1263dp"
+            android:layout_y="176dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnEncostaDosFelinos"
+            android:layout_width="76dp"
+            android:layout_height="30dp"
+            android:layout_x="1169dp"
+            android:layout_y="428dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnLinceIbérico"
+            android:layout_width="37dp"
+            android:layout_height="31dp"
+            android:layout_x="1135dp"
+            android:layout_y="205dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnÁdaxe"
+            android:layout_width="51dp"
+            android:layout_height="42dp"
+            android:layout_x="1046dp"
+            android:layout_y="336dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnTemploDosPrimatas1"
+            android:layout_width="43dp"
+            android:layout_height="64dp"
+            android:layout_x="1044dp"
+            android:layout_y="413dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnTemploDosPrimatas2"
+            android:layout_width="51dp"
+            android:layout_height="wrap_content"
+            android:layout_x="1157dp"
+            android:layout_y="590dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnTemploDosPrimatas3"
+            android:layout_width="33dp"
+            android:layout_height="66dp"
+            android:layout_x="1068dp"
+            android:layout_y="603dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnPalancas"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:layout_x="852dp"
+            android:layout_y="263dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnLeão"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_x="873dp"
+            android:layout_y="460dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnChita"
+            android:layout_width="78dp"
+            android:layout_height="38dp"
+            android:layout_x="676dp"
+            android:layout_y="350dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnElefante1"
+            android:layout_width="99dp"
+            android:layout_height="69dp"
+            android:layout_x="690dp"
+            android:layout_y="456dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnElefante2"
+            android:layout_width="132dp"
+            android:layout_height="75dp"
+            android:layout_x="628dp"
+            android:layout_y="590dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnHipopótamo"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_x="848dp"
+            android:layout_y="604dp"
+            android:background="#00ffffff" />
+
+        <Button
+            android:id="@+id/btnOkapis"
+            android:layout_width="58dp"
+            android:layout_height="63dp"
+            android:layout_x="559dp"
+            android:layout_y="455dp"
+            android:background="#00ffffff" />
+    </AbsoluteLayout>
+
+    <!--<LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:background="@color/black"
+        />-->
 
 </AbsoluteLayout>

@@ -102,4 +102,10 @@ public class Utils {
     public static float convertPixelsToDp(Context context, float px){
         return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
+
+    public static int convertToDps(Context context, int value)
+    {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (value * scale + 0.5f);
+    }
 }

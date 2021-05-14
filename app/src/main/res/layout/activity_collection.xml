@@ -13,29 +13,35 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/collection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/ratomate"
-                android:gravity="bottom">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#88FFFFFF">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="asdsadasdsa"
-                        android:textSize="20sp">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/lnexample"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:background="@drawable/ratomate"-->
+<!--                android:gravity="bottom"-->
+<!--                >-->
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/lninsideexample"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="#88FFFFFF">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/txtexample"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="asdsadasdsa"-->
+<!--                        android:textSize="20sp">-->
 
-                    </TextView>
-                </LinearLayout>
-            </LinearLayout>
+<!--                    </TextView>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
 
         </LinearLayout>
     </ScrollView>
