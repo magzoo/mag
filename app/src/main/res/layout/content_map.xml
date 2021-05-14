@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:gravity="center">
 
-    <AbsoluteLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="">
 
-        <ImageView
-            android:layout_width="1080dp"
-            android:layout_height="1920dp"
-            android:layout_x="-540dp"
-            android:layout_y="-960dp">
+    <LinearLayout
+        android:id="@+id/lnbackground"
+        android:layout_width="2000dp"
+        android:layout_height="2000dp"
+        android:layout_x="-1000dp"
+        android:layout_y="-1000dp"
+        android:orientation="horizontal"
+        android:background="@drawable/splash1">
+    </LinearLayout>
 
-        </ImageView>
-
-    </AbsoluteLayout>
+        <!--<LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_x="0dp"
+            android:layout_y="0dp"
+            android:background="@color/black"
+            />-->
 
 </AbsoluteLayout>

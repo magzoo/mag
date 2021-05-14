@@ -9,20 +9,34 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        android:background="@drawable/profilebackground" />
+
+    <ImageButton
+        android:id="@+id/btnAddImgSignup"
+        android:layout_width="50dp"
+        android:layout_height="55dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSignup"
+        app:layout_constraintEnd_toEndOf="@+id/imgSignup"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imgSignup"
+        app:layout_constraintTop_toTopOf="@+id/imgSignup"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/add" />
 
     <EditText
         android:id="@+id/txtLoginEmail"
         android:layout_width="225dp"
         android:layout_height="46dp"
-        android:layout_marginTop="32dp"
         android:backgroundTint="@color/black"
         android:ems="10"
         android:hint="@string/email"
@@ -32,8 +46,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintTop_toBottomOf="@+id/imgSignup"
+        app:layout_constraintVertical_bias="0.232" />
 
     <EditText
         android:id="@+id/txtUsername"

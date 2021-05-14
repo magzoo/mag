@@ -199,7 +199,7 @@ public class EditProfile extends AppCompatActivity {
                 if (rs.next()) {
 
                     String encodedimg = rs.getString("Profile_Picture");
-                    if(!encodedimg.equals(""))
+                    if(!encodedimg.equals("")|| encodedimg!=null)
                     {
                         Bitmap bitmap = Utils.base64ToImg(encodedimg);
                         imgprofile.setImageBitmap(bitmap);
@@ -230,7 +230,8 @@ public class EditProfile extends AppCompatActivity {
                         String query = "exec dbo.spEditUser '" + lkEmail + "','" + email.getText() + "','" + userName.getText() + "','" + pass.getText().toString() + "','" + Utils.imgToBase64(newImage) + "'";
                         Statement stmt = connection.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
-                        if (rs.next()) {
+                        if (rs.next())
+                        {
                             modDate.setText(rs.getString("ModificationDate"));
 
                             updateLkVariables();

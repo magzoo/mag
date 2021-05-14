@@ -5,15 +5,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
 import android.util.Base64;
+import android.util.DisplayMetrics;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
-
 import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import android.util.Base64;
 
 public class Utils {
 
@@ -92,5 +94,12 @@ public class Utils {
     {
         byte[] byteArray = Base64.decode(str, android.util.Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+    }
+    public static float convertDpToPixel(Context context, float dp){
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
+
+    public static float convertPixelsToDp(Context context, float px){
+        return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 }
