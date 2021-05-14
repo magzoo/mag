@@ -10,12 +10,12 @@
 
     <LinearLayout
         android:id="@+id/lnbackground"
-        android:layout_width="2000dp"
-        android:layout_height="2000dp"
-        android:layout_x="-1000dp"
-        android:layout_y="-1000dp"
+        android:layout_width="2550dp"
+        android:layout_height="1446dp"
+        android:layout_x="-1600dp"
+        android:layout_y="-700dp"
         android:orientation="horizontal"
-        android:background="@drawable/splash1">
+        android:background="@drawable/mapa">
     </LinearLayout>
 
         <!--<LinearLayout

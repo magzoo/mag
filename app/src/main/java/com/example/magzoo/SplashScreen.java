@@ -8,7 +8,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.example.magzoo.Utilities.GIFView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,12 +30,16 @@ public class SplashScreen extends AppCompatActivity {
         back = findViewById(R.id.back);
 //        back.setBackgroundResource(R.drawable.splash1);
 
+        GIFView gif;
+        gif =(GIFView) findViewById(R.id.gif);
+        gif.setImageResource(R.drawable.splash);
+
+
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                splashMove.cancel(true);
 
                 SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
                 String email = sharedLogin.getString("email", "");

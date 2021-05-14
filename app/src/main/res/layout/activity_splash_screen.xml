@@ -6,9 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="fill"
-    android:background="@drawable/splash"
     android:orientation="horizontal"
-    tools:context=".SplashScreen">
+    tools:context=".SplashScreen"
+    android:background="@drawable/splashback">
 
 
+    <com.example.magzoo.Utilities.GIFView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gif"
+        android:layout_gravity="center"
+
+        />
 </LinearLayout>

@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">MagZoo</string>
-    <string name="title_activity_map">Map</string>
+    <string name="tituloMapa">Mapa</string>
+    <string name="tituloCreditos">Créditos</string>
+    <string name="tituloPremio">Prémio</string>
+    <string name="tituloPremios">Prémios</string>
+    <string name="tituloPerfil">Perfil</string>
+    <string name="tituloEditarPerfil">Editar Perfil</string>
+    <string name="tituloColecao">Coleção</string>
+    <string name="tituloAnimal">Animal</string>
 
     <string name="registar">Registar</string>
     <string name="nome_de_utilizador">Nome de Utilizador</string>
