@@ -6,13 +6,688 @@
     android:layout_height="match_parent"
     tools:context=".CollectionDetails">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="164dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    app:srcCompat="@drawable/ratomate" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@color/yellow"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtRisk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="POUCO PREOCUPANTE"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Rã Tomate"
+                    android:textColor="@color/textgreen"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/txtSciName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dyscophus guineti"
+                    android:textColor="@color/textgreen"
+                    android:textSize="22sp"
+                    android:layout_gravity="center"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!--Sumario-->
+                        <TextView
+                            android:id="@+id/txtDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nos adultos a coloração varia entre o amarelo e o castanho, passando pelo laranja e vermelho, tornando-se mais escura à medida que envelhecem. As cores vivas alertam possíveis predadores para as toxinas que segrega através da pele, como forma de defesa. As fêmeas são maiores do que os machos.  "/>
+
+                        <!--HÁBITOS-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/lightgrey" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Hábitos"
+                            android:textColor="@color/textyellow"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtHabSummary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Caça por emboscada, capturando os insetos e invertebrados que passam perto do sítio onde se encontra. Embora associada à água é uma fraca nadadora. Quando ameaçada é frequente insuflar-se de modo a parecer maior e mais ameaçadora." />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:text="Atividade"
+                                    android:textColor="@color/textyellow"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/lightgrey"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="2dp">
+
+                                    <ImageView
+                                        android:id="@+id/imgHabAtiv"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/ativnoturna" />
+
+                                    <TextView
+                                        android:id="@+id/txtHabAtiv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Noturna"
+                                        android:textColor="@color/black" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:text="Vida Social"
+                                    android:textColor="@color/textyellow"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/lightgrey"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="2dp">
+
+                                    <ImageView
+                                        android:id="@+id/imgHabSocialLife"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/socialgregaria" />
+
+                                    <TextView
+                                        android:id="@+id/txtHabSocialLife"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Gregária"
+                                        android:textColor="@color/black" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:text="Dieta"
+                                    android:textColor="@color/textyellow"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/lightgrey"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="2dp">
+
+                                    <ImageView
+                                        android:id="@+id/imgHabDiet"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/dietaomnivora" />
+
+                                    <TextView
+                                        android:id="@+id/txtHabDiet"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Omnívora"
+                                        android:textColor="@color/black" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REPRODUÇÃO-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/lightgrey" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Reprodução"
+                            android:textColor="@color/textgreen"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtRepSummary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Em habitat natural, a época de reprodução é entre fevereiro e março, após as grandes chuvas. Os machos atraem as fêmeas através de uma vocalização típica que produzem. Os ovos são depositados na superfície da água ou na vegetação submersa." />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:text="Reprodução"
+                                    android:textColor="@color/textgreen"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/lightgrey"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="2dp">
+
+                                    <ImageView
+                                        android:id="@+id/imgRepType"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/repovipara" />
+
+                                    <TextView
+                                        android:id="@+id/txtRepType"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Noturna"
+                                        android:textColor="@color/black" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:text="Ovos"
+                                    android:textColor="@color/textgreen"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/lightgrey"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="2dp">
+
+                                    <ImageView
+                                        android:id="@+id/imgRepEggsOffSpring"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/crias" />
+
+                                    <TextView
+                                        android:id="@+id/txtRepEggsOffSpring"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="1000-1500 ovos"
+                                        android:textColor="@color/black" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:text="Incubação"
+                                    android:textColor="@color/textgreen"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/lightgrey"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="2dp">
+
+                                    <ImageView
+                                        android:id="@+id/imgRepIncubationGestation"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/gestacao" />
+
+                                    <TextView
+                                        android:id="@+id/txtRepIncubationGestation"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Gregária"
+                                        android:textColor="@color/black" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:text="Matur. Sexual"
+                                    android:textColor="@color/textgreen"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/lightgrey"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingBottom="2dp">
+
+                                    <ImageView
+                                        android:id="@+id/imgRepSexualMaturity"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/maturidade" />
+
+                                    <TextView
+                                        android:id="@+id/txtRepSexualMaturity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Omnívora"
+                                        android:textColor="@color/black" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--CONSERVAÇÃO-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/lightgrey" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Conservação"
+                            android:textColor="@color/textred"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtConservation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A população desta espécie está em declínio. A contínua perda do habitat é a principal ameaça à sua sobrevivência. No entanto, a captura para o comércio ilegal de espécies exóticas, também é de assinalar." />
+
+                        <!--DISTRIBUIÇÃO E HABITAT-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/lightgrey" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Distribuição e Habitat"
+                            android:textColor="@color/textred"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtDIstHabSummary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A população desta espécie está em declínio. A contínua perda do habitat é a principal ameaça à sua sobrevivência. No entanto, a captura para o comércio ilegal de espécies exóticas, também é de assinalar." />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/textred" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Classe: "
+                                android:textColor="@color/textred"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/txtClasse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Anfibios e outros"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ordem: "
+                                android:textColor="@color/textred"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/txtOrdem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Anura"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Família: "
+                                android:textColor="@color/textred"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/txtFamilia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Microhylidae"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/textred" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tamanho"
+                                android:textColor="@color/textred"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/iconunisexo" />
+
+                            <TextView
+                                android:id="@+id/txtComprimento"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Comprimento: 6-9,5 cm"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/textred" />
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Peso"
+                                android:textColor="@color/textred"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/iconunisexo" />
+
+                            <TextView
+                                android:id="@+id/txtPeso"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="&#60; 100 g"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCollect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Colecionar"
+                android:enabled="true"/>
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
