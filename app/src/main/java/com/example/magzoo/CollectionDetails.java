@@ -17,8 +17,9 @@ public class CollectionDetails extends AppCompatActivity {
         textView = findViewById(R.id.textView2);
 
         int id = getIntent().getExtras().getInt("idanimal");
+        String origin = getIntent().getExtras().getString("origin");
 
-        textView.setText("id: " + id);
+        textView.setText("id: " + id + ", from: " + origin);
 
     }
 }

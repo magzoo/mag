@@ -34,7 +34,6 @@ public class Collection extends AppCompatActivity {
         Animal a = new Animal();
         a.setId(1);
         a.setName("piranha vermelha");
-//        animal.setIcon(R.drawable.piranhavermelha);
         a.setIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ratomate));
         animals.add(a);
 
@@ -42,7 +41,6 @@ public class Collection extends AppCompatActivity {
         a.setId(2);
         a.setName("ratomate");
         a.setIcon(BitmapFactory.decodeResource(getResources(),R.drawable.piranhavermelha));
-//        animal.setIcon(R.drawable.ratomate);
         animals.add(a);
 
         fillCollection(animals);
@@ -64,6 +62,7 @@ public class Collection extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(Collection.this, CollectionDetails.class);
                     intent.putExtra("idanimal", animal.getId());
+                    intent.putExtra("origin", "collection");
                     startActivity(intent);
                 }
             });

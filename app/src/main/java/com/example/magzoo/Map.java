@@ -3,14 +3,15 @@ package com.example.magzoo;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.example.magzoo.Utilities.Utils;
+import com.example.magzoo.data.Animal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MotionEventCompat;
 
 import android.util.Log;
 import android.view.Menu;
@@ -20,13 +21,18 @@ import android.view.View;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 public class Map extends AppCompatActivity {
 
     private ImageButton btnCollection;
     private ImageButton btnAwards;
-    private AbsoluteLayout Layout;
+    private AbsoluteLayout layout;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -36,11 +42,9 @@ public class Map extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Layout = findViewById(R.id.lnbackground);
-        Log.d("bajoraz", "coord1" + Layout);
+        layout = findViewById(R.id.lnbackground);
         btnCollection = findViewById(R.id.btnCollection);
         btnAwards = findViewById(R.id.btnAwards);
-        Log.d("bajoraz", "coord1");
 
         btnCollection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +53,6 @@ public class Map extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Log.d("bajoraz", "coord2");
         btnAwards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,9 +60,8 @@ public class Map extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Log.d("bajoraz", "coord6");
 
-        Layout.setOnTouchListener(new View.OnTouchListener() {
+        layout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() ==  MotionEvent.ACTION_CANCEL)
@@ -104,37 +106,56 @@ public class Map extends AppCompatActivity {
 
             }
         });
-        Log.d("bajoraz", "coord7");
-        /*
-        layout.setX(this.getResources().getDisplayMetrics().widthPixels/2);
-        layout.setY(this.getResources().getDisplayMetrics().heightPixels/2);
 
-        Log.d("bajoraz", "W" + this.getResources().getDisplayMetrics().widthPixels);
-        Log.d("bajoraz", "H" + this.getResources().getDisplayMetrics().heightPixels);
-        */
 
+        HashMap<String, Animal> animals =  new HashMap<>();  //String = buttonid
+        Animal a = new Animal();
+        a.setId(1);
+        a.setButtonid("btnMonkey");
+        animals.put("btnMonkey", a);
+
+        a = new Animal();
+        a.setId(2);
+        a.setButtonid("btnCrocodile");
+        animals.put("btnCrocodile", a);
+
+        for(int i =0; i<2; i++)
+        {
+            if(layout.getChildAt(i) instanceof Button)
+            {
+                Button btn = (Button)layout.getChildAt(i);
+                String buttonid =  btn.getResources().getResourceName(btn.getId());
+                buttonid = buttonid.split("/")[1];
+                Log.d("bajoraz", "buttonid: " + buttonid);
+                Animal animal = animals.get(buttonid);
+                int id = animal.getId();
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Map.this, CollectionDetails.class);
+                        intent.putExtra("idanimal", id);
+                        intent.putExtra("origin", "map");
+                        startActivity(intent);
+                    }
+                });
+
+            }
+        }
     }
+
+
+
 
     private void relocateLayout(float x, float y){
         float centroX = (float)this.getResources().getDisplayMetrics().widthPixels/2;
         float centroY = (float)this.getResources().getDisplayMetrics().heightPixels/2;
-        Log.d("bajoraz", "Cx: " + centroX);
-        Log.d("bajoraz", "Cy: " + centroY);
 
+        float layoutX = layout.getX();
+        float layoutY = layout.getY();
 
-        float layoutX = Layout.getX();
-        float layoutY = Layout.getY();
-        Log.d("bajoraz", "Lx: " + layoutX);
-        Log.d("bajoraz", "Ly: " + layoutY);
-
-
-        Layout.setX(layoutX-(x + layoutX - centroX));
-        Layout.setY(layoutY-(y + layoutY - centroY));
-        //Layout.setY(layoutY+20);
-        Log.d("bajoraz","ResultY: " + (layoutY-(y - layoutY + centroY)));
-        Log.d("bajoraz", "layoutY: " + Layout.getY());
+        layout.setX(layoutX-(x + layoutX - centroX));
+        layout.setY(layoutY-(y + layoutY - centroY));
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

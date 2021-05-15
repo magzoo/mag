@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 public class Animal {
     private int id;
+    private String buttonid;
     private String name;
     private String cientificName;
     private String risk;
@@ -30,12 +31,22 @@ public class Animal {
     private String distHabCoordinateY;
     private Bitmap icon;
 
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+
+    public String getButtonid() {
+        return buttonid;
+    }
+
+    public void setButtonid(String buttonid) {
+        this.buttonid = buttonid;
     }
 
     public String getName() {
