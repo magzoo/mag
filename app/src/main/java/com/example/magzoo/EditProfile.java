@@ -199,10 +199,13 @@ public class EditProfile extends AppCompatActivity {
                 if (rs.next()) {
 
                     String encodedimg = rs.getString("Profile_Picture");
-                    if(!encodedimg.equals("")|| encodedimg!=null)
+                    if(encodedimg!=null)
                     {
-                        Bitmap bitmap = Utils.base64ToImg(encodedimg);
-                        imgprofile.setImageBitmap(bitmap);
+                        if(!encodedimg.equals("")){
+                            Bitmap bitmap = Utils.base64ToImg(encodedimg);
+                            imgprofile.setImageBitmap(bitmap);
+                        }
+
                     }
                     userName.setText(rs.getString("Name"));
                     lkUserName = rs.getString("Name");

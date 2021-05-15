@@ -61,8 +61,10 @@ public class Profile extends AppCompatActivity {
                     String encodedimg = rs.getString("Profile_Picture");
                     if(encodedimg !=null)
                     {
-                        Bitmap bitmap = Utils.base64ToImg(encodedimg);
-                        imgProfile.setImageBitmap(bitmap);
+                        if(!encodedimg.equals("")){
+                            Bitmap bitmap = Utils.base64ToImg(encodedimg);
+                            imgProfile.setImageBitmap(bitmap);
+                        }
                     }
                 }
             } catch (SQLException throwables) {

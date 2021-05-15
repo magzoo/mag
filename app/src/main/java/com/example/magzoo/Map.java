@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -25,7 +26,7 @@ public class Map extends AppCompatActivity {
 
     private ImageButton btnCollection;
     private ImageButton btnAwards;
-    private LinearLayout Layout;
+    private AbsoluteLayout Layout;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
