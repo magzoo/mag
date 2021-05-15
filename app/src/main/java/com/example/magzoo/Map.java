@@ -23,6 +23,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.lang.reflect.Array;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -78,7 +81,6 @@ public class Map extends AppCompatActivity {
                     return false;
                 }
                 return true;
-
 //                int action = event.getAction();
 //
 //                switch(action) {
@@ -102,49 +104,39 @@ public class Map extends AppCompatActivity {
 //                    default :
 //                        return false;
 //                }
-
-
             }
         });
-
-
-        HashMap<String, Animal> animals =  new HashMap<>();  //String = buttonid
-        Animal a = new Animal();
-        a.setId(1);
-        a.setButtonid("btnMonkey");
-        animals.put("btnMonkey", a);
-
-        a = new Animal();
-        a.setId(2);
-        a.setButtonid("btnCrocodile");
-        animals.put("btnCrocodile", a);
-
-        for(int i =0; i<2; i++)
+//        Animal a = new Animal();
+//        a.setId(1);
+//        a.setButtonid("btnMonkey");
+//        animals.put("btnMonkey", a);
+//
+//        a = new Animal();
+//        a.setId(2);
+//        a.setButtonid("btnCrocodile");
+//        animals.put("btnCrocodile", a);
+        HashMap<String, Integer> animals = sqlGetAnimals();
+        for(int i =0; i<animals.size(); i++)
         {
             if(layout.getChildAt(i) instanceof Button)
             {
                 Button btn = (Button)layout.getChildAt(i);
-                String buttonid =  btn.getResources().getResourceName(btn.getId());
-                buttonid = buttonid.split("/")[1];
-                Log.d("bajoraz", "buttonid: " + buttonid);
-                Animal animal = animals.get(buttonid);
-                int id = animal.getId();
+                String buttonId =  btn.getResources().getResourceName(btn.getId());
+                //buttonId = buttonId.split("/")[1];
+                Log.d("bajoraz", "buttonId: " + buttonId);
+                int animalId = animals.get("1");
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(Map.this, CollectionDetails.class);
-                        intent.putExtra("idanimal", id);
+                        intent.putExtra("animalId", animalId);
                         intent.putExtra("origin", "map");
                         startActivity(intent);
                     }
                 });
-
             }
         }
     }
-
-
-
 
     private void relocateLayout(float x, float y){
         float centroX = (float)this.getResources().getDisplayMetrics().widthPixels/2;
@@ -189,5 +181,36 @@ public class Map extends AppCompatActivity {
             startActivity(intent);
         
         return true;
+    }
+
+    private HashMap<String, Integer> sqlGetAnimals(){
+        String msg = "";
+        try
+        {
+            Connection connection = Utils.getConnection();
+
+            if (connection == null)
+            {
+                msg = "Verifique a sua ligação à Internet!";
+            }
+            else
+            {
+                HashMap<String, Integer> animals = new HashMap<>();  //String = buttonid | Integer = id do animal
+                String query = "select Id, ButtonId from Animal";
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    Log.d("bajoraz", "buttonIdsql: " + rs.getString("ButtonID"));
+                    animals.put(rs.getString("ButtonID"), rs.getInt("Id"));
+                }
+                return animals;
+            }
+        }
+        catch (Exception ex)
+        {
+            msg = ex.getMessage();
+        }
+        Utils.toast(this, msg);
+        return  null;
     }
 }

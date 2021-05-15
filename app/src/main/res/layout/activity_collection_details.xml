@@ -518,7 +518,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="0"
                         android:orientation="vertical">
@@ -625,7 +625,7 @@
                                 android:src="@drawable/iconunisexo" />
 
                             <TextView
-                                android:id="@+id/txtComprimento"
+                                android:id="@+id/txtTamanho"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Comprimento: 6-9,5 cm"

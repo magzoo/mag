@@ -3,11 +3,13 @@ package com.example.magzoo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,12 @@ import android.widget.TextView;
 
 import com.example.magzoo.Utilities.Utils;
 import com.example.magzoo.data.Animal;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Collection extends AppCompatActivity {
@@ -30,7 +37,7 @@ public class Collection extends AppCompatActivity {
 
         collection = findViewById(R.id.collection);
 
-        List<Animal> animals = new ArrayList<>();
+        /*List<Animal> animals = new ArrayList<>();
         Animal a = new Animal();
         a.setId(1);
         a.setName("piranha vermelha");
@@ -41,11 +48,10 @@ public class Collection extends AppCompatActivity {
         a.setId(2);
         a.setName("ratomate");
         a.setIcon(BitmapFactory.decodeResource(getResources(),R.drawable.piranhavermelha));
-        animals.add(a);
+        animals.add(a);*/
 
+        ArrayList<Animal> animals= sqlGetAnimals();
         fillCollection(animals);
-
-
     }
 
     private void fillCollection(List<Animal> animals) {
@@ -88,4 +94,40 @@ public class Collection extends AppCompatActivity {
         }
     }
 
+    private ArrayList<Animal> sqlGetAnimals(){
+        String msg = "";
+        try
+        {
+            Connection connection = Utils.getConnection();
+
+            if (connection == null)
+            {
+                msg = "Verifique a sua ligação à Internet!";
+            }
+            else
+            {
+                ArrayList<Animal> animals = new ArrayList<>();
+                String query = "select Id, [Name], Icon from Animal";
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    String animalImage = rs.getString("Icon");
+                    if(animalImage !=null)
+                    {
+                        if(!animalImage.equals("")){
+                            Bitmap bitmap = Utils.base64ToImg(animalImage);
+                            animals.add(new Animal(rs.getInt("Id"), rs.getString("Name"), bitmap));
+                        }
+                    }
+                }
+                return animals;
+            }
+        }
+        catch (Exception ex)
+        {
+            msg = ex.getMessage();
+        }
+        Utils.toast(this, msg);
+        return  null;
+    }
 }

@@ -40,4 +40,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //circular imageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //gps
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 }
