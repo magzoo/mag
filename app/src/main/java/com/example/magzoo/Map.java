@@ -40,6 +40,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import static java.lang.Math.sqrt;
+
 public class Map extends AppCompatActivity {
 
     private ImageButton btnCollection;
@@ -55,6 +57,9 @@ public class Map extends AppCompatActivity {
     private SensorEventListener lightEventListener;
     private static final int DARKLIMIT = 400;
     private static final int LIGHTLIMIT = 100;
+    private float centroX;
+    private float centroY;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -68,6 +73,9 @@ public class Map extends AppCompatActivity {
         btnCollection = findViewById(R.id.btnCollection);
         btnAwards = findViewById(R.id.btnAwards);
         backmap = findViewById(R.id.backmap);
+
+        centroX = (float)this.getResources().getDisplayMetrics().widthPixels/2;
+        centroY = (float)this.getResources().getDisplayMetrics().heightPixels/2;
 
         btnCollection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,17 +118,23 @@ public class Map extends AppCompatActivity {
             {
                 Button btn = (Button)layout.getChildAt(i);
                 String buttonId =  btn.getResources().getResourceName(btn.getId());
-                //buttonId = buttonId.split("/")[1];
-                int animalId = animals.get("1");
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(Map.this, CollectionDetails.class);
-                        intent.putExtra("animalId", animalId);
-                        intent.putExtra("origin", "map");
-                        startActivity(intent);
-                    }
-                });
+                buttonId = buttonId.split("/")[1];
+
+                if(animals.get(buttonId) != null) {
+                    int animalId = animals.get(buttonId);
+
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (checkAnimalInRange((btn.getX() + btn.getHeight() * 0.5), (btn.getY() + btn.getWidth() * 0.5))) {
+                                Intent intent = new Intent(Map.this, CollectionDetails.class);
+                                intent.putExtra("animalId", animalId);
+                                intent.putExtra("origin", "map");
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                }
             }
         }
 
@@ -187,14 +201,30 @@ public class Map extends AppCompatActivity {
 
 
     private void relocateLayout(float x, float y){
-        float centroX = (float)this.getResources().getDisplayMetrics().widthPixels/2;
-        float centroY = (float)this.getResources().getDisplayMetrics().heightPixels/2;
-
         float layoutX = layout.getX();
         float layoutY = layout.getY();
 
         layout.setX(layoutX-(x + layoutX - centroX));
         layout.setY(layoutY-(y + layoutY - centroY));
+
+        Log.d("bajoraz", "cateto1: " + Math.abs((x + layoutX - centroX)));
+        Log.d("bajoraz", "cateto2: " + Math.abs((y + layoutY - centroY)));
+    }
+
+    private boolean checkAnimalInRange(double x, double y){
+        float layoutX = layout.getX();
+        float layoutY = layout.getY();
+
+        Log.d("bajoraz", "cateto1func: " + Math.abs((x + layoutX - centroX)));
+        Log.d("bajoraz", "cateto2func: " + Math.abs((y + layoutY - centroY)));
+
+        double touchRadious = StrictMath.hypot(Math.abs((x + layoutX - centroX)), Math.abs((y + layoutY - centroY)));
+        Log.d("bajoraz", "touchRadious: " + touchRadious);
+
+        if(touchRadious<350){
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -206,8 +236,6 @@ public class Map extends AppCompatActivity {
 
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -344,6 +372,7 @@ public class Map extends AppCompatActivity {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
+                    Log.d("bajoraz", "buttonIdsql: " + rs.getString("ButtonID"));
                     animals.put(rs.getString("ButtonID"), rs.getInt("Id"));
                 }
                 return animals;

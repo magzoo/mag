@@ -8,10 +8,12 @@
     android:background="@color/themegrey"
     android:id="@+id/backmap">
 
+
     <include
         android:id="@+id/include"
-        layout="@layout/content_map"/>
-
+        layout="@layout/content_map"
+        tools:layout_editor_absoluteX="-199dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -40,6 +42,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/player" />
 
+    <ImageView
+        android:id="@+id/imageCircle"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/circulo" />
+
     <ImageButton
         android:id="@+id/btnAwards"
         android:layout_width="60dp"
@@ -47,9 +59,9 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="40dp"
+        android:background="@drawable/awards"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/awards" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
         android:id="@+id/btnCollection"
@@ -58,10 +70,9 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/collection"
         app:layout_constraintBottom_toTopOf="@+id/btnAwards"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/collection" />
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
