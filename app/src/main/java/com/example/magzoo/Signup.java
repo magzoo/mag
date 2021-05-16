@@ -220,6 +220,7 @@ public class Signup extends AppCompatActivity {
                 }
 
             }
+            connection.close();
         }
         catch (Exception ex)
         {

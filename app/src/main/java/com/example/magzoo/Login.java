@@ -94,6 +94,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
             }
+            connection.close();
         }
         catch (Exception ex) {
             msg = ex.getMessage();

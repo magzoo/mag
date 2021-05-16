@@ -132,6 +132,7 @@ public class Collection extends AppCompatActivity {
                 }
                 return animals;
             }
+            connection.close();
         }
         catch (Exception ex)
         {

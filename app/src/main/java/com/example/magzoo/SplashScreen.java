@@ -54,6 +54,11 @@ public class SplashScreen extends AppCompatActivity {
 
                 Connection connection = Utils.getConnection();
 //                insertImg(connection);
+                try {
+                    connection.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
 
                 Log.d("bajoraz", "email: " + email);
                 Log.d("bajoraz", "pass: " + pass);

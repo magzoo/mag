@@ -73,6 +73,7 @@ public class Utils {
                 return rs;
 
             }
+            connection.close();
         } catch (Exception ex) {
             msg = ex.getMessage();
         }

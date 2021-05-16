@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.magzoo.Utilities.Utils;
+import com.example.magzoo.data.Animal;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -55,6 +56,7 @@ public class CollectionDetails extends AppCompatActivity {
     private TextView txtRepIncubationGestation;
     private TextView txtRepSexualMaturity;
     private TextView txtConservation;
+    private TextView txtDIstHabSummary;
     private TextView txtClasse;
     private TextView txtOrdem;
     private TextView txtFamilia;
@@ -65,6 +67,7 @@ public class CollectionDetails extends AppCompatActivity {
     private double distHabCoordinateY;
 
     private Button btnCollect;
+    private Button btnDistance;
 
     private double latitude;
     private double longitude;
@@ -81,6 +84,7 @@ public class CollectionDetails extends AppCompatActivity {
         String origin = getIntent().getExtras().getString("origin");
 
         initializeElements();
+
         sqlGetAnimalDetails(animalId);
 
 
@@ -93,6 +97,12 @@ public class CollectionDetails extends AppCompatActivity {
             }
         });
 
+//        distancefromUser()
+
+    }
+
+    public void distancefromUser()
+    {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(CollectionDetails.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 101);
         }
@@ -150,6 +160,7 @@ public class CollectionDetails extends AppCompatActivity {
         imgRepSexualMaturity = findViewById(R.id.imgRepSexualMaturity);
         txtRepSexualMaturity = findViewById(R.id.txtRepSexualMaturity);
         txtConservation = findViewById(R.id.txtConservation);
+        txtDIstHabSummary = findViewById(R.id.txtConservation);
         txtClasse = findViewById(R.id.txtClasse);
         txtOrdem = findViewById(R.id.txtOrdem);
         txtFamilia = findViewById(R.id.txtFamilia);
@@ -160,7 +171,6 @@ public class CollectionDetails extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Log.d("bajoraz", "if");
         if (requestCode == 101) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(CollectionDetails.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 102);
@@ -217,6 +227,8 @@ public class CollectionDetails extends AppCompatActivity {
         return (rad * 180.0 / Math.PI);
     }
 
+
+
     private void sqlGetAnimalDetails(int animalId){
         String msg = "";
         try
@@ -232,7 +244,9 @@ public class CollectionDetails extends AppCompatActivity {
                 String query = "select Animal.*, FORMAT(UserAnimal.Date, 'dd/MM/yyyy') as CollectDate  from Animal FULL OUTER JOIN UserAnimal ON Animal.Id = UserAnimal.FK_Animal where Animal.Id =" +  animalId;
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
+                Log.d("bajoraz", "query executed");
                 if (rs.next()) {
+
                     String animalImage = rs.getString("Icon");
                     if(animalImage!=null) {
                         if (!animalImage.equals("")) {
@@ -247,7 +261,6 @@ public class CollectionDetails extends AppCompatActivity {
                     txtClasse.setText(rs.getString("Class"));
                     txtOrdem.setText(rs.getString("Order"));
                     txtFamilia.setText(rs.getString("Family"));
-
                     String lenght = rs.getString("Length");
                     String height = rs.getString("Height");
                     if(lenght.equals("0")){
@@ -278,7 +291,7 @@ public class CollectionDetails extends AppCompatActivity {
                     txtRepIncubationGestation.setText(rs.getString("RepIncubationGestation"));
                     txtRepSexualMaturity.setText(rs.getString("RepSexualMaturity"));
                     txtConservation.setText(rs.getString("Conservation"));
-                    txtDescription.setText(rs.getString("DistHabSummary"));
+                    txtDIstHabSummary.setText(rs.getString("DistHabSummary"));
                     distHabCoordinateX = Double.parseDouble(rs.getString("DistHabCoordinateX"));
                     distHabCoordinateY = Double.parseDouble(rs.getString("DistHabCoordinateY"));
                     String date = rs.getString("CollectDate");
@@ -319,6 +332,7 @@ public class CollectionDetails extends AppCompatActivity {
 
                 }
             }
+            connection.close();
         }
         catch (Exception ex)
         {
@@ -328,4 +342,5 @@ public class CollectionDetails extends AppCompatActivity {
         if(!msg.equals(""))
             Utils.toast(this, msg);
     }
+
 }

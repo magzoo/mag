@@ -111,18 +111,18 @@ public class Map extends AppCompatActivity {
                 return true;
             }
         });
+
         HashMap<String, Integer> animals = sqlGetAnimals();
-        for(int i =0; i<animals.size(); i++)
+        for(int i =0; i<layout.getChildCount(); i++)
         {
             if(layout.getChildAt(i) instanceof Button)
             {
                 Button btn = (Button)layout.getChildAt(i);
                 String buttonId =  btn.getResources().getResourceName(btn.getId());
                 buttonId = buttonId.split("/")[1];
-
                 if(animals.get(buttonId) != null) {
                     int animalId = animals.get(buttonId);
-
+                    Log.d("bajoraz", "in");
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -135,13 +135,33 @@ public class Map extends AppCompatActivity {
                         }
                     });
                 }
+                else
+                    {
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (checkAnimalInRange((btn.getX() + btn.getHeight() * 0.5), (btn.getY() + btn.getWidth() * 0.5))) {
+                                Intent intent = new Intent(Map.this, UnderConstruction.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                }
+
             }
         }
 
         SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
 
-
-        if(prefs.getString("mode", "").equals("Automático"))
+        if(prefs.getString("mode", "").equals(""))
+        {
+            SharedPreferences.Editor editor;
+            editor = prefs.edit();
+            editor.putString("mode", "Manual");
+            editor.putString("mode2", "Light Mode");
+            editor.commit();
+        }
+        else if(prefs.getString("mode", "").equals("Automático"))
         {
             startLuminositySensor();
         }
@@ -198,7 +218,6 @@ public class Map extends AppCompatActivity {
         if(sensorManager!=null)
             sensorManager.unregisterListener(lightEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT));
     }
-
 
     private void relocateLayout(float x, float y){
         float layoutX = layout.getX();
@@ -293,7 +312,6 @@ public class Map extends AppCompatActivity {
         return true;
     }
 
-
     private void loadModeOptions(Menu menu) {
         SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
         String mode = null;
@@ -377,6 +395,7 @@ public class Map extends AppCompatActivity {
                 }
                 return animals;
             }
+            connection.close();
         }
         catch (Exception ex)
         {

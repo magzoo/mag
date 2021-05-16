@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MagZoo">
-        <activity android:name=".CollectionDetails"></activity>
+        <activity android:name=".UnderConstruction"></activity>
+        <activity android:name=".CollectionDetails" />
         <activity
             android:name=".Credits"
             android:label="@string/tituloCreditos"
