@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -67,25 +68,26 @@ public class CollectionDetails extends AppCompatActivity {
 
     private double latitude;
     private double longitude;
-
+    private TextView txtDistance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_details);
+        btnCollect = findViewById(R.id.btnCollect);
 
-        int animalId = getIntent().getExtras().getInt("animalId");
+        int animalId = getIntent().getExtras().getInt("idanimal");
+        Log.d("bajoraz", "vindo do extraas: " + animalId);
         String origin = getIntent().getExtras().getString("origin");
 
         initializeElements();
         sqlGetAnimalDetails(animalId);
 
 
-        btnCollect = findViewById(R.id.btnCollect);
-
         btnCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sqlCollectAnimal(animalId);
                 btnCollect.setEnabled(false);
                 btnCollect.setText("Colecionado");
             }
@@ -110,9 +112,13 @@ public class CollectionDetails extends AppCompatActivity {
                         int latestLocationIndex = locationResult.getLocations().size() - 1;
                         latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
                         longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
-                        Log.d("bajoraz", "latitude e longitude: " + latitude + ", " + longitude);
-                        Log.d("bajoraz", "Distância: " + distance(latitude, longitude, distHabCoordinateX, distHabCoordinateY) );
-                        Log.d("bajoraz", "Animal " + distHabCoordinateX + ", " + distHabCoordinateY);
+                        Double distance = distance(latitude, longitude, distHabCoordinateX, distHabCoordinateY);
+
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("Você, encontra-se a ");
+                        sb.append(Utils.round(distance,2));
+                        sb.append("Km do habitat natural mais próximo");
+                        txtDistance.setText(sb.toString());
                     }
                 }
             }, Looper.getMainLooper());
@@ -149,6 +155,7 @@ public class CollectionDetails extends AppCompatActivity {
         txtFamilia = findViewById(R.id.txtFamilia);
         txtTamanho = findViewById(R.id.txtTamanho);
         txtPeso = findViewById(R.id.txtPeso);
+        txtDistance = findViewById(R.id.txtDistance);
     }
 
     @Override
@@ -205,8 +212,6 @@ public class CollectionDetails extends AppCompatActivity {
         return (rad * 180.0 / Math.PI);
     }
 
-
-
     private void sqlGetAnimalDetails(int animalId){
         String msg = "";
         try
@@ -219,12 +224,10 @@ public class CollectionDetails extends AppCompatActivity {
             }
             else
             {
-                Log.d("bajoraz", "sqlAnimalid: " + animalId);
-                String query = "select* from Animal where Id = " + animalId;
+                String query = "select Animal.*, FORMAT(UserAnimal.Date, 'dd/MM/yyyy') as CollectDate  from Animal FULL OUTER JOIN UserAnimal ON Animal.Id = UserAnimal.FK_Animal where Animal.Id =" +  animalId;
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 if (rs.next()) {
-
                     String animalImage = rs.getString("Icon");
                     if(animalImage!=null) {
                         if (!animalImage.equals("")) {
@@ -273,9 +276,11 @@ public class CollectionDetails extends AppCompatActivity {
                     txtDescription.setText(rs.getString("DistHabSummary"));
                     distHabCoordinateX = Double.parseDouble(rs.getString("DistHabCoordinateX"));
                     distHabCoordinateY = Double.parseDouble(rs.getString("DistHabCoordinateY"));
-                    Log.d("bajoraz", "sqlAnimal " + distHabCoordinateX + ", " + distHabCoordinateY);
-
-
+                    String date = rs.getString("CollectDate");
+                    if(date != null){
+                        btnCollect.setEnabled(false);
+                        btnCollect.setText("Colecionado a " + date);
+                    }
                 }
             }
         }
@@ -288,4 +293,34 @@ public class CollectionDetails extends AppCompatActivity {
             Utils.toast(this, msg);
     }
 
+    private void sqlCollectAnimal(int animalId){
+        String msg = "";
+        try
+        {
+            Connection connection = Utils.getConnection();
+
+            if (connection == null)
+            {
+                msg = "Verifique a sua ligação à Internet!";
+            }
+            else
+            {
+                SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+                String email = sharedLogin.getString("email", "");
+                String query = "exec dbo.spInsertUserAnimal '" + email + "','" + animalId + "'";
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                if (rs.next()) {
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            msg = ex.getMessage();
+            Log.d("bajoraz", "erro " +ex.getMessage());
+        }
+        if(!msg.equals(""))
+            Utils.toast(this, msg);
+    }
 }

@@ -51,23 +51,31 @@ public class Collection extends AppCompatActivity {
         animals.add(a);*/
 
         ArrayList<Animal> animals= sqlGetAnimals();
-        Log.d("bajoraz", "animals: " + animals);
         fillCollection(animals);
     }
 
     private void fillCollection(List<Animal> animals) {
         for(Animal animal: animals)
         {
+            Log.d("bajoraz", "entrou no foreach1");
             LinearLayout ln =  new LinearLayout(this);
+            Log.d("bajoraz", "entrou no foreach2");
             ln.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utils.convertToDps(this, 200)));
+            Log.d("bajoraz", "entrou no foreach3");
             ln.setOrientation(LinearLayout.HORIZONTAL);
+            Log.d("bajoraz", "entrou no foreac4h");
             ln.setGravity(Gravity.BOTTOM);
+            Log.d("bajoraz", "entrou no foreach5");
             BitmapDrawable ob = new BitmapDrawable(getResources(), animal.getIcon());
+            Log.d("bajoraz", "entrou no foreach6");
             ln.setBackground(ob);
+            Log.d("bajoraz", "entrou no foreach7");
             ln.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Log.d("bajoraz", "entrou no foreach8");
                     Intent intent = new Intent(Collection.this, CollectionDetails.class);
+                    Log.d("bajoraz", "animalId: " + animal.getId());
                     intent.putExtra("idanimal", animal.getId());
                     intent.putExtra("origin", "collection");
                     startActivity(intent);
