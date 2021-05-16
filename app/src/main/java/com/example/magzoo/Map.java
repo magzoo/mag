@@ -87,7 +87,7 @@ public class Map extends AppCompatActivity {
         btnAwards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Map.this, Awards.class);
+                Intent intent = new Intent(Map.this, UnderConstruction.class);
                 startActivity(intent);
             }
         });
