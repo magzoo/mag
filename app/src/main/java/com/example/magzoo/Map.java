@@ -101,10 +101,9 @@ public class Map extends AppCompatActivity {
                 }
                 if (event.getAction() == MotionEvent.ACTION_UP)
                 {
-                    Log.d("bajoraz", "if2");
                     float x = event.getX();
                     float y = event.getY();
-                    Log.d("bajoraz", "coordX Y: " + Utils.convertPixelsToDp(Map.this, x) + " " + Utils.convertPixelsToDp(Map.this, y));
+//                    Log.d("bajoraz", "coordX Y: " + Utils.convertPixelsToDp(Map.this, x) + " " + Utils.convertPixelsToDp(Map.this, y));
                     relocateLayout(x, y);
                     return false;
                 }
@@ -122,12 +121,14 @@ public class Map extends AppCompatActivity {
                 buttonId = buttonId.split("/")[1];
                 if(animals.get(buttonId) != null) {
                     int animalId = animals.get(buttonId);
-                    Log.d("bajoraz", "in");
+                    Log.d("bajoraz", "animalId: " + animalId);
+                    Log.d("bajoraz", "buttonId: " + buttonId);
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             if (checkAnimalInRange((btn.getX() + btn.getHeight() * 0.5), (btn.getY() + btn.getWidth() * 0.5))) {
                                 Intent intent = new Intent(Map.this, CollectionDetails.class);
+                                Log.d("bajoraz", "animalId: " + animalId);
                                 intent.putExtra("animalId", animalId);
                                 intent.putExtra("origin", "map");
                                 startActivity(intent);
@@ -226,19 +227,19 @@ public class Map extends AppCompatActivity {
         layout.setX(layoutX-(x + layoutX - centroX));
         layout.setY(layoutY-(y + layoutY - centroY));
 
-        Log.d("bajoraz", "cateto1: " + Math.abs((x + layoutX - centroX)));
-        Log.d("bajoraz", "cateto2: " + Math.abs((y + layoutY - centroY)));
+//        Log.d("bajoraz", "cateto1: " + Math.abs((x + layoutX - centroX)));
+//        Log.d("bajoraz", "cateto2: " + Math.abs((y + layoutY - centroY)));
     }
 
     private boolean checkAnimalInRange(double x, double y){
         float layoutX = layout.getX();
         float layoutY = layout.getY();
 
-        Log.d("bajoraz", "cateto1func: " + Math.abs((x + layoutX - centroX)));
-        Log.d("bajoraz", "cateto2func: " + Math.abs((y + layoutY - centroY)));
+//        Log.d("bajoraz", "cateto1func: " + Math.abs((x + layoutX - centroX)));
+//        Log.d("bajoraz", "cateto2func: " + Math.abs((y + layoutY - centroY)));
 
         double touchRadious = StrictMath.hypot(Math.abs((x + layoutX - centroX)), Math.abs((y + layoutY - centroY)));
-        Log.d("bajoraz", "touchRadious: " + touchRadious);
+
 
         if(touchRadious<350){
             return true;
@@ -390,7 +391,6 @@ public class Map extends AppCompatActivity {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
-                    Log.d("bajoraz", "buttonIdsql: " + rs.getString("ButtonID"));
                     animals.put(rs.getString("ButtonID"), rs.getInt("Id"));
                 }
                 return animals;

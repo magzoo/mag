@@ -78,8 +78,9 @@ public class CollectionDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_details);
         btnCollect = findViewById(R.id.btnCollect);
+        btnDistance = findViewById(R.id.btnDistance);
 
-        int animalId = getIntent().getExtras().getInt("idanimal");
+        int animalId = getIntent().getExtras().getInt("animalId");
         Log.d("bajoraz", "vindo do extraas: " + animalId);
         String origin = getIntent().getExtras().getString("origin");
 
@@ -96,8 +97,15 @@ public class CollectionDetails extends AppCompatActivity {
                 btnCollect.setText("Colecionado");
             }
         });
+        btnDistance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                distancefromUser();
+                view.setEnabled(false);
+            }
+        });
 
-//        distancefromUser()
+
 
     }
 
@@ -129,6 +137,7 @@ public class CollectionDetails extends AppCompatActivity {
                         sb.append(Utils.round(distance,2));
                         sb.append("Km do habitat natural mais próximo");
                         txtDistance.setText(sb.toString());
+                        txtDistance.setVisibility(View.VISIBLE);
                     }
                 }
             }, Looper.getMainLooper());

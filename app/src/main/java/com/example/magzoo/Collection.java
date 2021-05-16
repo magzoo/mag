@@ -57,33 +57,46 @@ public class Collection extends AppCompatActivity {
     private void fillCollection(List<Animal> animals) {
         for(Animal animal: animals)
         {
-            Log.d("bajoraz", "entrou no foreach1");
+
             LinearLayout ln =  new LinearLayout(this);
-            Log.d("bajoraz", "entrou no foreach2");
             ln.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utils.convertToDps(this, 200)));
-            Log.d("bajoraz", "entrou no foreach3");
-            ln.setOrientation(LinearLayout.HORIZONTAL);
-            Log.d("bajoraz", "entrou no foreac4h");
-            ln.setGravity(Gravity.BOTTOM);
-            Log.d("bajoraz", "entrou no foreach5");
             BitmapDrawable ob = new BitmapDrawable(getResources(), animal.getIcon());
-            Log.d("bajoraz", "entrou no foreach6");
             ln.setBackground(ob);
-            Log.d("bajoraz", "entrou no foreach7");
-            ln.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("bajoraz", "entrou no foreach8");
-                    Intent intent = new Intent(Collection.this, CollectionDetails.class);
-                    Log.d("bajoraz", "animalId: " + animal.getId());
-                    intent.putExtra("idanimal", animal.getId());
-                    intent.putExtra("origin", "collection");
-                    startActivity(intent);
-                }
-            });
+            ln.setGravity(Gravity.CENTER);
+            ln.setOrientation(LinearLayout.VERTICAL);
+
+            if(true) {
+                ln.setAlpha(0.8f);
+            }else{
+                ln.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d("bajoraz", "entrou no foreach8");
+                        Intent intent = new Intent(Collection.this, CollectionDetails.class);
+                        Log.d("bajoraz", "animalId: " + animal.getId());
+                        intent.putExtra("animalId", animal.getId());
+                        intent.putExtra("origin", "collection");
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            TextView textView = new TextView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            params.weight = 1;
+            textView.setLayoutParams(params);
+            textView.setText("Animal ainda não está colecionado");
+            textView.setGravity(Gravity.CENTER);
+            textView.setTextSize(20);
+            textView.setTextColor(getResources().getColor(R.color.black));
+
+            ln.addView(textView);
 
             LinearLayout lninside = new LinearLayout(this);
-            lninside.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            LinearLayout.LayoutParams lnparams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.weight = 1;
+            lninside.setLayoutParams(lnparams);
+            lninside.setGravity(Gravity.BOTTOM);
             lninside.setOrientation(LinearLayout.HORIZONTAL);
             lninside.setBackgroundColor(Color.parseColor("#88FFFFFF"));
 

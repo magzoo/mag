@@ -24,23 +24,39 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="200dp"-->
 <!--                android:background="@drawable/ratomate"-->
-<!--                android:gravity="bottom"-->
-<!--                >-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="vertical"-->
+<!--                android:alpha="0.8">-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="aaaa"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textColor="@color/black"/>|-->
 <!--                <LinearLayout-->
 <!--                    android:id="@+id/lninsideexample"-->
 <!--                    android:layout_width="match_parent"-->
 <!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="#88FFFFFF">-->
-<!--                    <TextView-->
-<!--                        android:id="@+id/txtexample"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="asdsadasdsa"-->
-<!--                        android:textSize="20sp">-->
+<!--                    android:gravity="bottom"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_weight="0"-->
+<!--                android:background="#88FFFFFF">-->
+<!--                    -->
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtexample"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="asdsadasdsa"-->
+<!--                            android:textSize="20sp">-->
 
-<!--                    </TextView>-->
+<!--                        </TextView>-->
+<!--                    -->
 <!--                </LinearLayout>-->
 <!--            </LinearLayout>-->
+
+
 
 
         </LinearLayout>
