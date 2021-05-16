@@ -57,7 +57,7 @@ public class Profile extends AppCompatActivity {
             try {
                 if (rs.next()) {
                     userName.setText(rs.getString("Name"));
-                    creationDate.setText(rs.getString("CreationDate"));
+                    creationDate.setText("Data de Criação:\n" + rs.getString("CreationDate"));
                     String encodedimg = rs.getString("Profile_Picture");
                     if(encodedimg !=null)
                     {

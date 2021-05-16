@@ -506,6 +506,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/ovosCrias"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
@@ -557,6 +558,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/gestacaoIncubacao"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
@@ -686,6 +688,7 @@
                             android:text="A população desta espécie está em declínio. A contínua perda do habitat é a principal ameaça à sua sobrevivência. No entanto, a captura para o comércio ilegal de espécies exóticas, também é de assinalar." />
 
                         <ImageView
+                            android:id="@+id/map"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ratomatemapa"/>

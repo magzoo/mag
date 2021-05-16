@@ -65,7 +65,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnAvárioAsiático"
+            android:id="@+id/btnAvarioAsiatico"
             android:layout_width="17dp"
             android:layout_height="30dp"
             android:layout_x="1070dp"
@@ -121,7 +121,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnFaisão"
+            android:id="@+id/btnFaisao"
             android:layout_width="25dp"
             android:layout_height="20dp"
             android:layout_x="1214dp"
@@ -241,7 +241,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnGibão"
+            android:id="@+id/btnGibao"
             android:layout_width="42dp"
             android:layout_height="wrap_content"
             android:layout_x="1201dp"
@@ -353,7 +353,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnLémure1"
+            android:id="@+id/btnLemure1"
             android:layout_width="25dp"
             android:layout_height="36dp"
             android:layout_x="911dp"
@@ -361,7 +361,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnLémure2"
+            android:id="@+id/btnLemure2"
             android:layout_width="23dp"
             android:layout_height="33dp"
             android:layout_x="1424dp"
@@ -385,7 +385,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnHopopótamosPigmeus"
+            android:id="@+id/btnHipopotamosPigmeus"
             android:layout_width="56dp"
             android:layout_height="33dp"
             android:layout_x="1530dp"
@@ -401,7 +401,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnÁxis"
+            android:id="@+id/btnAxis"
             android:layout_width="46dp"
             android:layout_height="63dp"
             android:layout_x="1272dp"
@@ -425,7 +425,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnLinceIbérico"
+            android:id="@+id/btnLinceIberico"
             android:layout_width="37dp"
             android:layout_height="31dp"
             android:layout_x="1135dp"
@@ -433,7 +433,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnÁdaxe"
+            android:id="@+id/btnAdaxe"
             android:layout_width="51dp"
             android:layout_height="42dp"
             android:layout_x="1046dp"
@@ -473,7 +473,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnLeão"
+            android:id="@+id/btnLeao"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_x="873dp"
@@ -505,7 +505,7 @@
             android:background="#00ffffff" />
 
         <Button
-            android:id="@+id/btnHipopótamo"
+            android:id="@+id/btnHipopotamo"
             android:layout_width="78dp"
             android:layout_height="wrap_content"
             android:layout_x="848dp"
@@ -520,14 +520,4 @@
             android:layout_y="455dp"
             android:background="#00ffffff" />
     </AbsoluteLayout>
-
-    <!--<LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_x="0dp"
-        android:layout_y="0dp"
-        android:background="@color/black"
-        />-->
-
 </AbsoluteLayout>

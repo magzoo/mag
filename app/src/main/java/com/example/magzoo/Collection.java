@@ -37,35 +37,25 @@ public class Collection extends AppCompatActivity {
 
         collection = findViewById(R.id.collection);
 
-        /*List<Animal> animals = new ArrayList<>();
-        Animal a = new Animal();
-        a.setId(1);
-        a.setName("piranha vermelha");
-        a.setIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ratomate));
-        animals.add(a);
-
-        a = new Animal();
-        a.setId(2);
-        a.setName("ratomate");
-        a.setIcon(BitmapFactory.decodeResource(getResources(),R.drawable.piranhavermelha));
-        animals.add(a);*/
-
         ArrayList<Animal> animals= sqlGetAnimals();
         fillCollection(animals);
     }
 
     private void fillCollection(List<Animal> animals) {
+        boolean isCollected = false;
         for(Animal animal: animals)
         {
 
             LinearLayout ln =  new LinearLayout(this);
             ln.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utils.convertToDps(this, 200)));
-            BitmapDrawable ob = new BitmapDrawable(getResources(), animal.getIcon());
-            ln.setBackground(ob);
+            //BitmapDrawable ob = new BitmapDrawable(getResources(), animal.getIcon());
+            //ln.setBackground(ob);
+            ln.setBackgroundResource(R.drawable.animaldefault);
             ln.setGravity(Gravity.CENTER);
             ln.setOrientation(LinearLayout.VERTICAL);
+            isCollected = animal.isCollected();
 
-            if(true) {
+            if(!isCollected) {
                 ln.setAlpha(0.8f);
             }else{
                 ln.setOnClickListener(new View.OnClickListener() {
@@ -81,11 +71,15 @@ public class Collection extends AppCompatActivity {
                 });
             }
 
+
+
             TextView textView = new TextView(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             params.weight = 1;
             textView.setLayoutParams(params);
-            textView.setText("Animal ainda não está colecionado");
+            if(!isCollected) {
+                textView.setText("Animal ainda não está colecionado");
+            }
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(20);
             textView.setTextColor(getResources().getColor(R.color.black));
@@ -94,7 +88,6 @@ public class Collection extends AppCompatActivity {
 
             LinearLayout lninside = new LinearLayout(this);
             LinearLayout.LayoutParams lnparams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.weight = 1;
             lninside.setLayoutParams(lnparams);
             lninside.setGravity(Gravity.BOTTOM);
             lninside.setOrientation(LinearLayout.HORIZONTAL);
@@ -129,18 +122,22 @@ public class Collection extends AppCompatActivity {
             else
             {
                 ArrayList<Animal> animals = new ArrayList<>();
-                String query = "select Id, [Name], Icon from Animal";
+                String query = "select Animal.Id, Animal.[Name], FORMAT(UserAnimal.Date, 'dd/MM/yyyy') as CollectDate from Animal FULL OUTER JOIN UserAnimal ON Animal.Id = UserAnimal.FK_Animal";
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
-                    String animalImage = rs.getString("Icon");
+                    /*String animalImage = rs.getString("Icon");
                     if(animalImage !=null)
                     {
                         if(!animalImage.equals("")){
-                            Bitmap bitmap = Utils.base64ToImg(animalImage);
-                            animals.add(new Animal(rs.getInt("Id"), rs.getString("Name"), bitmap));
-                        }
-                    }
+                            Bitmap bitmap = Utils.base64ToImg(animalImage);*/
+                            boolean isCollected = false;
+                            if(rs.getString("CollectDate") != null){
+                                isCollected = true;
+                            }
+                            animals.add(new Animal(rs.getInt("Id"), rs.getString("Name"), isCollected));
+                     /*   }
+                    }*/
 
                 }
                 return animals;

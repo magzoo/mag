@@ -132,7 +132,10 @@ public class Map extends AppCompatActivity {
                                 intent.putExtra("animalId", animalId);
                                 intent.putExtra("origin", "map");
                                 startActivity(intent);
+                            }else{
+                                Utils.toast(Map.this, "Animal fora de alcance!");
                             }
+
                         }
                     });
                 }
@@ -144,6 +147,8 @@ public class Map extends AppCompatActivity {
                             if (checkAnimalInRange((btn.getX() + btn.getHeight() * 0.5), (btn.getY() + btn.getWidth() * 0.5))) {
                                 Intent intent = new Intent(Map.this, UnderConstruction.class);
                                 startActivity(intent);
+                            }else{
+                                Utils.toast(Map.this, "Animal fora de alcance!");
                             }
                         }
                     });

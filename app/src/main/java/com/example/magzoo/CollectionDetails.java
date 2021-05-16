@@ -3,16 +3,13 @@ package com.example.magzoo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Looper;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.magzoo.Utilities.Utils;
-import com.example.magzoo.data.Animal;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -41,6 +37,7 @@ public class CollectionDetails extends AppCompatActivity {
     private ImageView imgRepEggsOffSpring;
     private ImageView imgRepIncubationGestation;
     private ImageView imgRepSexualMaturity;
+    private ImageView imgMap;
 
     private TextView txtRisk;
     private TextView txtName;
@@ -52,7 +49,9 @@ public class CollectionDetails extends AppCompatActivity {
     private TextView txtHabDiet;
     private TextView txtRepSummary;
     private TextView txtRepType;
+    private TextView txtOvosCrias;
     private TextView txtRepEggsOffSpring;
+    private TextView txtGestacaoIncubacao;
     private TextView txtRepIncubationGestation;
     private TextView txtRepSexualMaturity;
     private TextView txtConservation;
@@ -164,7 +163,9 @@ public class CollectionDetails extends AppCompatActivity {
         txtRepType = findViewById(R.id.txtRepType);
         imgRepEggsOffSpring = findViewById(R.id.imgRepEggsOffSpring);
         txtRepEggsOffSpring = findViewById(R.id.txtRepEggsOffSpring);
+        txtGestacaoIncubacao = findViewById(R.id.gestacaoIncubacao);
         imgRepIncubationGestation = findViewById(R.id.imgRepIncubationGestation);
+        txtOvosCrias = findViewById(R.id.ovosCrias);
         txtRepIncubationGestation = findViewById(R.id.txtRepIncubationGestation);
         imgRepSexualMaturity = findViewById(R.id.imgRepSexualMaturity);
         txtRepSexualMaturity = findViewById(R.id.txtRepSexualMaturity);
@@ -176,6 +177,7 @@ public class CollectionDetails extends AppCompatActivity {
         txtTamanho = findViewById(R.id.txtTamanho);
         txtPeso = findViewById(R.id.txtPeso);
         txtDistance = findViewById(R.id.txtDistance);
+        imgMap = findViewById(R.id.map);
     }
 
     @Override
@@ -255,7 +257,6 @@ public class CollectionDetails extends AppCompatActivity {
                 ResultSet rs = stmt.executeQuery(query);
                 Log.d("bajoraz", "query executed");
                 if (rs.next()) {
-
                     String animalImage = rs.getString("Icon");
                     if(animalImage!=null) {
                         if (!animalImage.equals("")) {
@@ -291,14 +292,97 @@ public class CollectionDetails extends AppCompatActivity {
                     }
 
                     txtHabSummary.setText(rs.getString("HabSummary"));
+
+                    //////////////////////////////////////////////////////////////////////
+                    //verificar
+                    String habActivity = rs.getString("HabActivity");
+                    if(habActivity.equals("Noturna")){
+                        imgHabAtiv.setImageResource(R.drawable.noturna);
+                    }else if(habActivity.equals("Crepuscular")){
+                        imgHabAtiv.setImageResource(R.drawable.crepuscular);
+                    }else  if(habActivity.equals("Crepuscular e Diurna")){
+                        imgHabAtiv.setImageResource(R.drawable.crepusculardiurna);
+                    }else  if(habActivity.equals("Crepuscular e Noturna")){
+                        imgHabAtiv.setImageResource(R.drawable.crepuscularnoturna);
+                    }else  if(habActivity.equals("Diurna")){
+                        imgHabAtiv.setImageResource(R.drawable.diurna);
+                    }else  if(habActivity.equals("Diurna e Noturna")){
+                        imgHabAtiv.setImageResource(R.drawable.diurnanoturna);
+                    }
+
                     txtHabAtiv.setText(rs.getString("HabActivity"));
+
+                    //////////////////////////////////////////////////////////////////////
+                    //verificar
+                    String habSocialLife = rs.getString("HabSocialLife");
+                    if(habSocialLife.equals("Bando")){
+                        imgHabSocialLife.setImageResource(R.drawable.bando);
+                    }else if(habSocialLife.equals("Bando")){
+                        imgHabSocialLife.setImageResource(R.drawable.casal);
+                    }else if(habSocialLife.equals("Familiar")){
+                        imgHabSocialLife.setImageResource(R.drawable.familiar);
+                    }else if(habSocialLife.equals("Gregária")){
+                        imgHabSocialLife.setImageResource(R.drawable.gregaria);
+                    }else if(habSocialLife.equals("Solitária")){
+                        imgHabSocialLife.setImageResource(R.drawable.solitario);
+                    }
                     txtHabSocialLife.setText(rs.getString("HabSocialLife"));
+
+                    //////////////////////////////////////////////////////////////////////
+                    //verificar
+                    String habDiet = rs.getString("HabDiet");
+                    if(habDiet.equals("Carnívora")){
+                        imgHabDiet.setImageResource(R.drawable.carnivora);
+                    }else if(habDiet.equals("Frugívora")){
+                        imgHabDiet.setImageResource(R.drawable.frugivera);
+                    }else if(habDiet.equals("Frugívora ou Granívora")){
+                        imgHabDiet.setImageResource(R.drawable.frugiveragranivora);
+                    }else if(habDiet.equals("Herbívora")){
+                        imgHabDiet.setImageResource(R.drawable.herbivora);
+                    }else if(habDiet.equals("Herbivora ou Omnívora")){
+                        imgHabDiet.setImageResource(R.drawable.herbivoraomnivora);
+                    }else if(habDiet.equals("Omnívora")){
+                        imgHabDiet.setImageResource(R.drawable.omnivora);
+                    }else if(habDiet.equals("Omnívora e Filtrador")){
+                        imgHabDiet.setImageResource(R.drawable.omnivorafiltrador);
+                    }else if(habDiet.equals("Piscívora")){
+                        imgHabDiet.setImageResource(R.drawable.piscivora);
+                    }
                     txtHabDiet.setText(rs.getString("HabDiet"));
+
                     txtRepSummary.setText(rs.getString("RepSummary"));
+
+                    //////////////////////////////////////////////////////////////////////
+                    //verificar
+                    String repType = rs.getString("RepType");
+                    if(repType.equals("Ovípara")){
+                        imgRepType.setImageResource(R.drawable.ovipara);
+                        txtOvosCrias.setText("Ovos");
+                        txtGestacaoIncubacao.setText("Incubação");
+                    }else if(repType.equals("Vivípara")){
+                        imgRepType.setImageResource(R.drawable.vivipara);
+                        txtOvosCrias.setText("Nº de Crias");
+                        txtGestacaoIncubacao.setText("Gestação");
+                    }
                     txtRepType.setText(rs.getString("RepType"));
+
+
+                    //////////////////////////////////////////////////////////////////////
+                    //verificar
+                    imgRepEggsOffSpring.setImageResource(R.drawable.crias);
                     txtRepEggsOffSpring.setText(rs.getString("RepEggsOffSpring"));
+
+                    //////////////////////////////////////////////////////////////////////
+                    //verificar
+                    imgRepIncubationGestation.setImageResource(R.drawable.gestacao);
                     txtRepIncubationGestation.setText(rs.getString("RepIncubationGestation"));
+
+                    //////////////////////////////////////////////////////////////////////
+                    //verificar
+                    imgRepSexualMaturity.setImageResource(R.drawable.maturidade);
                     txtRepSexualMaturity.setText(rs.getString("RepSexualMaturity"));
+                    //////////////////////////////////////////////////////////////////////
+
                     txtConservation.setText(rs.getString("Conservation"));
                     txtDIstHabSummary.setText(rs.getString("DistHabSummary"));
                     distHabCoordinateX = Double.parseDouble(rs.getString("DistHabCoordinateX"));
@@ -307,6 +391,13 @@ public class CollectionDetails extends AppCompatActivity {
                     if(date != null){
                         btnCollect.setEnabled(false);
                         btnCollect.setText("Colecionado a " + date);
+                    }
+                    String mapImage = rs.getString("Map");
+                    if(mapImage!=null) {
+                        if (!mapImage.equals("")) {
+                            Bitmap bitmap = Utils.base64ToImg(mapImage);
+                            imgMap.setImageBitmap(bitmap);
+                        }
                     }
                 }
             }
@@ -336,10 +427,10 @@ public class CollectionDetails extends AppCompatActivity {
                 String email = sharedLogin.getString("email", "");
                 String query = "exec dbo.spInsertUserAnimal '" + email + "','" + animalId + "'";
                 Statement stmt = connection.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                if (rs.next()) {
+                stmt.executeQuery(query);
+                /*if (rs.next()) {
 
-                }
+                }*/
             }
             connection.close();
         }

@@ -78,68 +78,26 @@ public class SplashScreen extends AppCompatActivity {
         }, 5000);
 
     }
+/*
+    public void insertImg(Connection connection){
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.golfinhoroaz);
+        String icon= Utils.imgToBase64(bitmap);
 
-//    public void insertImg(Connection connection){
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.golfinhoroaz);
-//        String icon= Utils.imgToBase64(bitmap);
-//
-//
-//        if (connection != null)
-//        {
-//            ArrayList<Animal> animals = new ArrayList<>();
-//            String query = "UPDATE [dbo].[Animal] SET [Icon] = '"+icon+"' WHERE id=1";
-//
-//            Statement stmt = null;
-//            try {
-//                stmt = connection.createStatement();
-//                stmt.executeQuery(query);
-//            }
-//            catch (SQLException throwables)
-//            {
-//                Log.d("bajoraz", throwables.toString());
-//            }
-//        }
-//    }
 
-    private class splashMove extends AsyncTask {
-        @Override
-        protected String doInBackground(Object[] objects) {
-            Log.d("splashcenas", "splashmove");
+        if (connection != null)
+        {
+            ArrayList<Animal> animals = new ArrayList<>();
+            String query = "UPDATE [dbo].[Animal] SET [Icon] = '"+icon+"' WHERE id=1";
 
-            int time = 0;
-            int interval = 300;
+            Statement stmt = null;
             try {
-                while (time < 5000) {
-                    Log.d("splashcenas", "while");
-
-                    time += (interval * 2);
-                    back.setBackgroundResource(R.drawable.splash1);
-                    TimeUnit.MILLISECONDS.sleep(interval);
-                    back.setBackgroundResource(R.drawable.splash2);
-                    TimeUnit.MILLISECONDS.sleep(interval);
-                    back.setBackgroundResource(R.drawable.splash3);
-                    TimeUnit.MILLISECONDS.sleep(interval);
-                    back.setBackgroundResource(R.drawable.splash4);
-                    TimeUnit.MILLISECONDS.sleep(interval);
-                    back.setBackgroundResource(R.drawable.splash5);
-                    TimeUnit.MILLISECONDS.sleep(interval);
-                }
-                Intent intent = new Intent(SplashScreen.this, Login.class);
-                startActivity(intent);
-                finish();
-            } catch (Exception e) {
-                Log.d("splashcenas", "Erro: " + e.getMessage());
+                stmt = connection.createStatement();
+                stmt.executeQuery(query);
             }
-
-            return "done";
+            catch (SQLException throwables)
+            {
+                Log.d("bajoraz", throwables.toString());
+            }
         }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-        }
-    }
-    //fazer giff again
-
-
+    }*/
 }

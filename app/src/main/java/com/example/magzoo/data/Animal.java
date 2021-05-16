@@ -30,44 +30,15 @@ public class Animal {
     private String distHabCoordinateX;
     private String distHabCoordinateY;
     private Bitmap icon;
+    private boolean isCollected;
 
     //construtor usado na classe Colection
-    public Animal(int id, String name, Bitmap icon) {
+    public Animal(int id, String name, boolean isCollected) {
         this.id = id;
         this.name = name;
-        this.icon = icon;
+        this.isCollected = isCollected;
     }
 
-    //construtor usado na classe ColectionDetails
-    public Animal(int id, String buttonid, String name, String cientificName, String risk, String summary, String classs, String order, String family, String length, String height, String weightF, String weightM, String habSummary, String habActivity, String habSocialLife, String habDiet, String repSummary, String repType, String repEggsOffSpring, String repIncubationGestation, String repSexualMaturity, String conservation, String distHabSummary, String distHabCoordinateX, String distHabCoordinateY, Bitmap icon) {
-        this.id = id;
-        this.buttonid = buttonid;
-        this.name = name;
-        this.cientificName = cientificName;
-        this.risk = risk;
-        this.summary = summary;
-        this.classs = classs;
-        this.order = order;
-        this.family = family;
-        this.length = length;
-        this.height = height;
-        this.weightF = weightF;
-        this.weightM = weightM;
-        this.habSummary = habSummary;
-        this.habActivity = habActivity;
-        this.habSocialLife = habSocialLife;
-        this.habDiet = habDiet;
-        this.repSummary = repSummary;
-        this.repType = repType;
-        this.repEggsOffSpring = repEggsOffSpring;
-        this.repIncubationGestation = repIncubationGestation;
-        this.repSexualMaturity = repSexualMaturity;
-        this.conservation = conservation;
-        this.distHabSummary = distHabSummary;
-        this.distHabCoordinateX = distHabCoordinateX;
-        this.distHabCoordinateY = distHabCoordinateY;
-        this.icon = icon;
-    }
 
     public int getId() {
         return id;
@@ -77,6 +48,13 @@ public class Animal {
         this.id = id;
     }
 
+    public boolean isCollected() {
+        return isCollected;
+    }
+
+    public void setCollected(boolean collected) {
+        isCollected = collected;
+    }
 
     public String getButtonid() {
         return buttonid;

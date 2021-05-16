@@ -230,8 +230,14 @@ public class EditProfile extends AppCompatActivity {
                     }
                     else {
                         // Change below query according to your own database.
-                        Log.d("bajoraz", Utils.imgToBase64(newImage));
-                        String query = "exec dbo.spEditUser '" + lkEmail + "','" + email.getText() + "','" + userName.getText() + "','" + pass.getText().toString() + "','" + Utils.imgToBase64(newImage) + "'";
+                        String query = "";
+                        if(newImage !=null){
+                            Log.d("bajoraz", "ola1");
+                            query = "exec dbo.spEditUser '" + lkEmail + "','" + email.getText() + "','" + userName.getText() + "','" + pass.getText().toString() + "','" + Utils.imgToBase64(newImage) + "'";
+                        }else{
+                            Log.d("bajoraz", "ola2");
+                            query = "exec dbo.spEditUser '" + lkEmail + "','" + email.getText() + "','" + userName.getText() + "','" + pass.getText().toString() + "', NULL";
+                        }
                         Statement stmt = connection.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
                         if (rs.next())
