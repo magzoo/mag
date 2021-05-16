@@ -57,7 +57,6 @@ public class Utils {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 
-
     public static ResultSet getUserInfo(String email) {
         String msg = "";
         try {

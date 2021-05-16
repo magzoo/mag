@@ -60,8 +60,8 @@ public class CollectionDetails extends AppCompatActivity {
     private TextView txtTamanho;
     private TextView txtPeso;
 
-    private int distHabCoordinateX;
-    private int distHabCoordinateY;
+    private double distHabCoordinateX;
+    private double distHabCoordinateY;
 
     private Button btnCollect;
 
@@ -74,7 +74,7 @@ public class CollectionDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_details);
 
-        int animalId = getIntent().getExtras().getInt("idanimal");
+        int animalId = getIntent().getExtras().getInt("animalId");
         String origin = getIntent().getExtras().getString("origin");
 
         initializeElements();
@@ -110,67 +110,16 @@ public class CollectionDetails extends AppCompatActivity {
                         int latestLocationIndex = locationResult.getLocations().size() - 1;
                         latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
                         longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
+                        Log.d("bajoraz", "latitude e longitude: " + latitude + ", " + longitude);
+                        Log.d("bajoraz", "Distância: " + distance(latitude, longitude, distHabCoordinateX, distHabCoordinateY) );
+                        Log.d("bajoraz", "Animal " + distHabCoordinateX + ", " + distHabCoordinateY);
                     }
                 }
             }, Looper.getMainLooper());
         }
 
-        Log.d("bajoraz", "latitude e longitude: " + latitude + ", " + longitude);
-        Log.d("bajoraz", "Distância: " + distance(latitude, longitude, distHabCoordinateX, distHabCoordinateY));
+
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Log.d("bajoraz", "if");
-        if (requestCode == 101) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(CollectionDetails.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 102);
-            }
-        }
-        if (requestCode == 102) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                LocationRequest locationRequest = new LocationRequest();
-                locationRequest.setInterval(10000);
-                locationRequest.setFastestInterval(3000);
-                locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-                LocationServices.getFusedLocationProviderClient(CollectionDetails.this).requestLocationUpdates(locationRequest, new LocationCallback() {
-                    @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        super.onLocationResult(locationResult);
-                        LocationServices.getFusedLocationProviderClient(CollectionDetails.this).removeLocationUpdates(this);
-                        if (locationResult != null && locationResult.getLocations().size() > 0) {
-                            int latestLocationIndex = locationResult.getLocations().size() - 1;
-                            latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
-                            longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
-                        }
-                    }
-                }, Looper.getMainLooper());
-            }
-        }
-    }
-
-    private double distance(double lat1, double lon1, double lat2, double lon2) {
-        double theta = lon1 - lon2;
-        double dist = Math.sin(deg2rad(lat1))
-                * Math.sin(deg2rad(lat2))
-                + Math.cos(deg2rad(lat1))
-                * Math.cos(deg2rad(lat2))
-                * Math.cos(deg2rad(theta));
-        dist = Math.acos(dist);
-        dist = rad2deg(dist);
-        dist = dist * 60 * 1.1515;
-        return (dist*1.609344);
-    }
-
-    private double deg2rad(double deg) {
-        return (deg * Math.PI / 180.0);
-    }
-
-    private double rad2deg(double rad) {
-        return (rad * 180.0 / Math.PI);
-    }
-
 
     private void initializeElements() {
         img = findViewById(R.id.img);
@@ -202,6 +151,61 @@ public class CollectionDetails extends AppCompatActivity {
         txtPeso = findViewById(R.id.txtPeso);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.d("bajoraz", "if");
+        if (requestCode == 101) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(CollectionDetails.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 102);
+            }
+        }
+        if (requestCode == 102) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                LocationRequest locationRequest = new LocationRequest();
+                locationRequest.setInterval(10000);
+                locationRequest.setFastestInterval(3000);
+                locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+                LocationServices.getFusedLocationProviderClient(CollectionDetails.this).requestLocationUpdates(locationRequest, new LocationCallback() {
+                    @Override
+                    public void onLocationResult(LocationResult locationResult) {
+                        super.onLocationResult(locationResult);
+                        LocationServices.getFusedLocationProviderClient(CollectionDetails.this).removeLocationUpdates(this);
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+                            int latestLocationIndex = locationResult.getLocations().size() - 1;
+                            latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
+                            longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
+                            Log.d("bajoraz", "latitude e longitude: " + latitude + ", " + longitude);
+                            Log.d("bajoraz", "Distância: " + distance(latitude, longitude, distHabCoordinateX, distHabCoordinateY));
+                        }
+                    }
+                }, Looper.getMainLooper());
+            }
+        }
+    }
+
+    private double distance(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1))
+                * Math.sin(deg2rad(lat2))
+                + Math.cos(deg2rad(lat1))
+                * Math.cos(deg2rad(lat2))
+                * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        return (dist*1.609344);
+    }
+
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    private double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
+    }
+
+
 
     private void sqlGetAnimalDetails(int animalId){
         String msg = "";
@@ -215,12 +219,19 @@ public class CollectionDetails extends AppCompatActivity {
             }
             else
             {
-                String query = "select* from Animal where Id = " + animalId + "";
+                Log.d("bajoraz", "sqlAnimalid: " + animalId);
+                String query = "select* from Animal where Id = " + animalId;
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 if (rs.next()) {
+
                     String animalImage = rs.getString("Icon");
-                    Bitmap bitmap = Utils.base64ToImg(animalImage);
+                    if(animalImage!=null) {
+                        if (!animalImage.equals("")) {
+                            Bitmap bitmap = Utils.base64ToImg(animalImage);
+                            img.setImageBitmap(bitmap);
+                        }
+                    }
                     txtName.setText(rs.getString("Name"));
                     txtSciName.setText(rs.getString("CientificName"));
                     txtRisk.setText(rs.getString("Risk"));
@@ -260,17 +271,21 @@ public class CollectionDetails extends AppCompatActivity {
                     txtRepSexualMaturity.setText(rs.getString("RepSexualMaturity"));
                     txtConservation.setText(rs.getString("Conservation"));
                     txtDescription.setText(rs.getString("DistHabSummary"));
-                    distHabCoordinateX = Integer.parseInt(rs.getString("DistHabCoordinateX"));
-                    distHabCoordinateY = Integer.parseInt(rs.getString("DistHabCoordinateY"));
-                    img.setImageBitmap(bitmap);
+                    distHabCoordinateX = Double.parseDouble(rs.getString("DistHabCoordinateX"));
+                    distHabCoordinateY = Double.parseDouble(rs.getString("DistHabCoordinateY"));
+                    Log.d("bajoraz", "sqlAnimal " + distHabCoordinateX + ", " + distHabCoordinateY);
+
+
                 }
             }
         }
         catch (Exception ex)
         {
             msg = ex.getMessage();
+            Log.d("bajoraz", "erro " +ex.getMessage());
         }
-        Utils.toast(this, msg);
+        if(!msg.equals(""))
+            Utils.toast(this, msg);
     }
 
 }

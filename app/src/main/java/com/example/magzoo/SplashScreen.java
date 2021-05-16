@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +14,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.magzoo.Utilities.GIFView;
+import com.example.magzoo.Utilities.Utils;
+import com.example.magzoo.data.Animal;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class SplashScreen extends AppCompatActivity {
@@ -35,8 +44,6 @@ public class SplashScreen extends AppCompatActivity {
         gif.setImageResource(R.drawable.splash);
 
 
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -44,6 +51,9 @@ public class SplashScreen extends AppCompatActivity {
                 SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
                 String email = sharedLogin.getString("email", "");
                 String pass = sharedLogin.getString("pass", "");
+
+                Connection connection = Utils.getConnection();
+//                insertImg(connection);
 
                 Log.d("bajoraz", "email: " + email);
                 Log.d("bajoraz", "pass: " + pass);
@@ -64,6 +74,27 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
+//    public void insertImg(Connection connection){
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.golfinhoroaz);
+//        String icon= Utils.imgToBase64(bitmap);
+//
+//
+//        if (connection != null)
+//        {
+//            ArrayList<Animal> animals = new ArrayList<>();
+//            String query = "UPDATE [dbo].[Animal] SET [Icon] = '"+icon+"' WHERE id=1";
+//
+//            Statement stmt = null;
+//            try {
+//                stmt = connection.createStatement();
+//                stmt.executeQuery(query);
+//            }
+//            catch (SQLException throwables)
+//            {
+//                Log.d("bajoraz", throwables.toString());
+//            }
+//        }
+//    }
 
     private class splashMove extends AsyncTask {
         @Override

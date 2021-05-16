@@ -51,6 +51,7 @@ public class Collection extends AppCompatActivity {
         animals.add(a);*/
 
         ArrayList<Animal> animals= sqlGetAnimals();
+        Log.d("bajoraz", "animals: " + animals);
         fillCollection(animals);
     }
 
@@ -119,6 +120,7 @@ public class Collection extends AppCompatActivity {
                             animals.add(new Animal(rs.getInt("Id"), rs.getString("Name"), bitmap));
                         }
                     }
+
                 }
                 return animals;
             }

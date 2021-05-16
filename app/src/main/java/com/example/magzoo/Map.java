@@ -4,15 +4,23 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
 import com.example.magzoo.Utilities.Utils;
 import com.example.magzoo.data.Animal;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.os.Debug;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +29,7 @@ import android.view.View;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.sql.Connection;
@@ -36,6 +45,16 @@ public class Map extends AppCompatActivity {
     private ImageButton btnCollection;
     private ImageButton btnAwards;
     private AbsoluteLayout layout;
+    private MenuItem item1;
+    private MenuItem item2;
+    private Menu menu;
+    private ConstraintLayout backmap;
+
+    private SensorManager sensorManager;
+    private Sensor lightsensor;
+    private SensorEventListener lightEventListener;
+    private static final int DARKLIMIT = 400;
+    private static final int LIGHTLIMIT = 100;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -48,6 +67,7 @@ public class Map extends AppCompatActivity {
         layout = findViewById(R.id.lnbackground);
         btnCollection = findViewById(R.id.btnCollection);
         btnAwards = findViewById(R.id.btnAwards);
+        backmap = findViewById(R.id.backmap);
 
         btnCollection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,40 +101,8 @@ public class Map extends AppCompatActivity {
                     return false;
                 }
                 return true;
-//                int action = event.getAction();
-//
-//                switch(action) {
-//                    case (MotionEvent.ACTION_DOWN) :
-//                        Log.d("bajoraz","Action was DOWN");
-//                        return true;
-//                    case (MotionEvent.ACTION_MOVE) :
-//                        Log.d("bajoraz","Action was MOVE");
-//                        return true;
-//                    case (MotionEvent.ACTION_UP) :
-//
-//                        Log.d("bajoraz","Action was UP");
-//                        return true;
-//                    case (MotionEvent.ACTION_CANCEL) :
-//                        Log.d("bajoraz","Action was CANCEL");
-//                        return true;
-//                    case (MotionEvent.ACTION_OUTSIDE) :
-//                        Log.d("bajoraz","Movement occurred outside bounds " +
-//                                "of current screen element");
-//                        return true;
-//                    default :
-//                        return false;
-//                }
             }
         });
-//        Animal a = new Animal();
-//        a.setId(1);
-//        a.setButtonid("btnMonkey");
-//        animals.put("btnMonkey", a);
-//
-//        a = new Animal();
-//        a.setId(2);
-//        a.setButtonid("btnCrocodile");
-//        animals.put("btnCrocodile", a);
         HashMap<String, Integer> animals = sqlGetAnimals();
         for(int i =0; i<animals.size(); i++)
         {
@@ -123,7 +111,6 @@ public class Map extends AppCompatActivity {
                 Button btn = (Button)layout.getChildAt(i);
                 String buttonId =  btn.getResources().getResourceName(btn.getId());
                 //buttonId = buttonId.split("/")[1];
-                Log.d("bajoraz", "buttonId: " + buttonId);
                 int animalId = animals.get("1");
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -136,7 +123,68 @@ public class Map extends AppCompatActivity {
                 });
             }
         }
+
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+
+
+        if(prefs.getString("mode", "").equals("Automático"))
+        {
+            startLuminositySensor();
+        }
+        else
+        {
+            stopLuminositySensor();
+        }
+
+        changeTheme();
+
     }
+
+    public void startLuminositySensor()
+    {
+        if(sensorManager==null)
+            loadLuminositySensor();
+        sensorManager.registerListener(lightEventListener, lightsensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
+    public void loadLuminositySensor()
+    {
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        lightsensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+
+        if(lightsensor != null) {
+
+
+            lightEventListener = new SensorEventListener() {
+                @Override
+                public void onSensorChanged(SensorEvent event) {
+                    float value = event.values[0];
+
+                    if(value < LIGHTLIMIT)
+                    {
+                        backmap.setBackgroundResource(R.color.themegrey);
+                    }
+                    else if(value > DARKLIMIT)
+                    {
+                        backmap.setBackgroundResource(R.color.white);
+                    }
+
+                }
+
+                @Override
+                public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+                }
+            };
+        }
+    }
+    public void stopLuminositySensor()
+    {
+
+        if(sensorManager!=null)
+            sensorManager.unregisterListener(lightEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT));
+    }
+
 
     private void relocateLayout(float x, float y){
         float centroX = (float)this.getResources().getDisplayMetrics().widthPixels/2;
@@ -152,8 +200,14 @@ public class Map extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        this.menu = menu;
+        loadModeOptions(menu);
+
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -167,12 +221,40 @@ public class Map extends AppCompatActivity {
             case R.id.perfil:
                 intent = new Intent(Map.this, Profile.class);
                 break;
-            case R.id.logout:
-                SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedLogin.edit();
-                editor.putString("email", "");
-                editor.putString("pass", "");
+            case R.id.mode:
+                SharedPreferences.Editor editor = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE).edit();
+                if(item.getTitle().equals("Manual"))
+                {
+                    editor.putString("mode", "Automático");
+                    startLuminositySensor();
+                }
+                else
+                {
+                    editor.putString("mode", "Manual");
+                    stopLuminositySensor();
+                }
                 editor.commit();
+                loadModeOptions(menu);
+                break;
+            case R.id.mode2:
+                SharedPreferences.Editor editor1 = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE).edit();
+                if(item.getTitle().equals("Dark Mode"))
+                {
+                    editor1.putString("mode2", "Light Mode");
+                }
+                else
+                {
+                    editor1.putString("mode2", "Dark Mode");
+                }
+                editor1.commit();
+                loadModeOptions(menu);
+                changeTheme();
+                break;
+            case R.id.logout:
+                SharedPreferences.Editor editor2 = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE).edit();
+                editor2.putString("email", "");
+                editor2.putString("pass", "");
+                editor2.commit();
 
                 intent = new Intent(Map.this, Login.class);
                 break;
@@ -181,6 +263,68 @@ public class Map extends AppCompatActivity {
             startActivity(intent);
         
         return true;
+    }
+
+
+    private void loadModeOptions(Menu menu) {
+        SharedPreferences sharedLogin = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+        String mode = null;
+        String mode2 = null;
+
+        mode = sharedLogin.getString("mode", "");
+        mode2 = sharedLogin.getString("mode2", "");
+
+        item1 = menu.findItem(R.id.mode);
+        item2 = menu.findItem(R.id.mode2);
+        if(mode.equals(""))
+        {
+            SharedPreferences.Editor editor;
+            editor = sharedLogin.edit();
+            editor.putString("mode", "Manual");
+            editor.putString("mode2", "Light Mode");
+            editor.commit();
+        }
+        else if(mode.equals("Manual"))
+        {
+            item2.setEnabled(true);
+            changeTheme();
+        }
+        else
+        {
+            item2.setEnabled(false);
+        }
+
+        item1.setTitle(mode);
+        item2.setTitle(mode2);
+    }
+
+    public void changeTheme()
+    {
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+        if(prefs.getString("mode2", "").equals("Light Mode"))
+        {
+            backmap.setBackgroundResource(R.color.white);
+        }
+        else if(prefs.getString("mode2", "").equals("Dark Mode"))
+        {
+            backmap.setBackgroundResource(R.color.themegrey);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(sensorManager!=null)
+//            sensorManager.registerListener(lightEventListener, lightsensor, SensorManager.SENSOR_DELAY_FASTEST);
+            startLuminositySensor();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(sensorManager!=null)
+//            sensorManager.unregisterListener(lightEventListener);
+            stopLuminositySensor();
     }
 
     private HashMap<String, Integer> sqlGetAnimals(){
@@ -200,7 +344,6 @@ public class Map extends AppCompatActivity {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
-                    Log.d("bajoraz", "buttonIdsql: " + rs.getString("ButtonID"));
                     animals.put(rs.getString("ButtonID"), rs.getInt("Id"));
                 }
                 return animals;
