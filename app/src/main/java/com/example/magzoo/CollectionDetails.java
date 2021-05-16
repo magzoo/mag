@@ -182,8 +182,13 @@ public class CollectionDetails extends AppCompatActivity {
                             int latestLocationIndex = locationResult.getLocations().size() - 1;
                             latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
                             longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
-                            Log.d("bajoraz", "latitude e longitude: " + latitude + ", " + longitude);
-                            Log.d("bajoraz", "Distância: " + distance(latitude, longitude, distHabCoordinateX, distHabCoordinateY));
+                            Double distance = distance(latitude, longitude, distHabCoordinateX, distHabCoordinateY);
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.append("Você, encontra-se a ");
+                            sb.append(Utils.round(distance,2));
+                            sb.append("Km do habitat natural mais próximo");
+                            txtDistance.setText(sb.toString());
                         }
                     }
                 }, Looper.getMainLooper());
