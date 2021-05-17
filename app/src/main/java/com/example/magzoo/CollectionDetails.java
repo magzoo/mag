@@ -170,7 +170,7 @@ public class CollectionDetails extends AppCompatActivity {
         imgRepSexualMaturity = findViewById(R.id.imgRepSexualMaturity);
         txtRepSexualMaturity = findViewById(R.id.txtRepSexualMaturity);
         txtConservation = findViewById(R.id.txtConservation);
-        txtDIstHabSummary = findViewById(R.id.txtConservation);
+        txtDIstHabSummary = findViewById(R.id.txtDIstHabSummary);
         txtClasse = findViewById(R.id.txtClasse);
         txtOrdem = findViewById(R.id.txtOrdem);
         txtFamilia = findViewById(R.id.txtFamilia);
@@ -293,8 +293,6 @@ public class CollectionDetails extends AppCompatActivity {
 
                     txtHabSummary.setText(rs.getString("HabSummary"));
 
-                    //////////////////////////////////////////////////////////////////////
-                    //verificar
                     String habActivity = rs.getString("HabActivity");
                     if(habActivity.equals("Noturna")){
                         imgHabAtiv.setImageResource(R.drawable.noturna);
@@ -312,8 +310,6 @@ public class CollectionDetails extends AppCompatActivity {
 
                     txtHabAtiv.setText(rs.getString("HabActivity"));
 
-                    //////////////////////////////////////////////////////////////////////
-                    //verificar
                     String habSocialLife = rs.getString("HabSocialLife");
                     if(habSocialLife.equals("Bando")){
                         imgHabSocialLife.setImageResource(R.drawable.bando);
@@ -328,8 +324,6 @@ public class CollectionDetails extends AppCompatActivity {
                     }
                     txtHabSocialLife.setText(rs.getString("HabSocialLife"));
 
-                    //////////////////////////////////////////////////////////////////////
-                    //verificar
                     String habDiet = rs.getString("HabDiet");
                     if(habDiet.equals("Carnívora")){
                         imgHabDiet.setImageResource(R.drawable.carnivora);
@@ -352,8 +346,6 @@ public class CollectionDetails extends AppCompatActivity {
 
                     txtRepSummary.setText(rs.getString("RepSummary"));
 
-                    //////////////////////////////////////////////////////////////////////
-                    //verificar
                     String repType = rs.getString("RepType");
                     if(repType.equals("Ovípara")){
                         imgRepType.setImageResource(R.drawable.ovipara);
@@ -367,26 +359,20 @@ public class CollectionDetails extends AppCompatActivity {
                     txtRepType.setText(rs.getString("RepType"));
 
 
-                    //////////////////////////////////////////////////////////////////////
-                    //verificar
                     imgRepEggsOffSpring.setImageResource(R.drawable.crias);
                     txtRepEggsOffSpring.setText(rs.getString("RepEggsOffSpring"));
 
-                    //////////////////////////////////////////////////////////////////////
-                    //verificar
                     imgRepIncubationGestation.setImageResource(R.drawable.gestacao);
                     txtRepIncubationGestation.setText(rs.getString("RepIncubationGestation"));
 
-                    //////////////////////////////////////////////////////////////////////
-                    //verificar
                     imgRepSexualMaturity.setImageResource(R.drawable.maturidade);
                     txtRepSexualMaturity.setText(rs.getString("RepSexualMaturity"));
-                    //////////////////////////////////////////////////////////////////////
 
                     txtConservation.setText(rs.getString("Conservation"));
                     txtDIstHabSummary.setText(rs.getString("DistHabSummary"));
                     distHabCoordinateX = Double.parseDouble(rs.getString("DistHabCoordinateX"));
                     distHabCoordinateY = Double.parseDouble(rs.getString("DistHabCoordinateY"));
+
                     String date = rs.getString("CollectDate");
                     if(date != null){
                         btnCollect.setEnabled(false);

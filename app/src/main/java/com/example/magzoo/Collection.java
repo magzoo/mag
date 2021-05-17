@@ -76,6 +76,7 @@ public class Collection extends AppCompatActivity {
             }
 
 
+
             TextView textView = new TextView(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             params.weight = 1;
