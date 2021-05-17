@@ -50,14 +50,18 @@ public class Collection extends AppCompatActivity {
             ln.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utils.convertToDps(this, 200)));
             //BitmapDrawable ob = new BitmapDrawable(getResources(), animal.getIcon());
             //ln.setBackground(ob);
-            ln.setBackgroundResource(R.drawable.animaldefault);
+
+
+
             ln.setGravity(Gravity.CENTER);
             ln.setOrientation(LinearLayout.VERTICAL);
             isCollected = animal.isCollected();
 
             if(!isCollected) {
+                ln.setBackgroundResource(R.drawable.animaldefault2);
                 ln.setAlpha(0.8f);
             }else{
+                ln.setBackgroundResource(R.drawable.animaldefault);
                 ln.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -72,17 +76,17 @@ public class Collection extends AppCompatActivity {
             }
 
 
-
             TextView textView = new TextView(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             params.weight = 1;
             textView.setLayoutParams(params);
             if(!isCollected) {
                 textView.setText("Animal ainda não está colecionado");
+
             }
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(20);
-            textView.setTextColor(getResources().getColor(R.color.black));
+            textView.setTextColor(getResources().getColor(R.color.white));
 
             ln.addView(textView);
 

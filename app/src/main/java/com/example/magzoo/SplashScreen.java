@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SplashScreen extends AppCompatActivity {
@@ -53,7 +54,19 @@ public class SplashScreen extends AppCompatActivity {
                 String pass = sharedLogin.getString("pass", "");
 
                 Connection connection = Utils.getConnection();
-//                insertImg(connection);
+
+//                List<Bitmap> bitmaps = new ArrayList<>();
+//
+//                int id = 3;
+//                for(Bitmap bmp : bitmaps)
+//                {
+//                    String icon= Utils.imgToBase64(bmp);
+//                    insertImg(connection, icon, id);
+//                    id++;
+//                }
+
+
+
                 try {
                     connection.close();
                 } catch (SQLException throwables) {
@@ -78,26 +91,31 @@ public class SplashScreen extends AppCompatActivity {
         }, 5000);
 
     }
-/*
-    public void insertImg(Connection connection){
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.golfinhoroaz);
-        String icon= Utils.imgToBase64(bitmap);
 
+//    public void insertImg(Connection connection, String pic, int id){
+//
+//
+//
+//
+//
+//        if (connection != null)
+//        {
+//            ArrayList<Animal> animals = new ArrayList<>();
+//            String query = "UPDATE [dbo].[Animal] SET [Map] = '"+pic+"' WHERE id=" + id + " select 1 ";
+//
+//
+//            Statement stmt = null;
+//            try {
+//                stmt = connection.createStatement();
+//                stmt.executeQuery(query);
+//                Utils.toast(this, "inserted");
+//
+//            }
+//            catch (SQLException throwables)
+//            {
+//                Log.d("bajoraz", throwables.toString());
+//            }
+//        }
+//    }
 
-        if (connection != null)
-        {
-            ArrayList<Animal> animals = new ArrayList<>();
-            String query = "UPDATE [dbo].[Animal] SET [Icon] = '"+icon+"' WHERE id=1";
-
-            Statement stmt = null;
-            try {
-                stmt = connection.createStatement();
-                stmt.executeQuery(query);
-            }
-            catch (SQLException throwables)
-            {
-                Log.d("bajoraz", throwables.toString());
-            }
-        }
-    }*/
 }

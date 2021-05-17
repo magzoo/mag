@@ -121,8 +121,6 @@ public class Map extends AppCompatActivity {
                 buttonId = buttonId.split("/")[1];
                 if(animals.get(buttonId) != null) {
                     int animalId = animals.get(buttonId);
-                    Log.d("bajoraz", "animalId: " + animalId);
-                    Log.d("bajoraz", "buttonId: " + buttonId);
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
